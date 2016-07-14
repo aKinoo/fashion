@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         imageView1 = (ImageView)findViewById(R.id.imageView);
-        imageView1.setImageResource(R.drawable.Tanktop);
+        imageView1.setImageResource(R.drawable.tanktop);
 
     }
 }
