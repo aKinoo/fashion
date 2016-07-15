@@ -72,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
                             mImage1.setImageUrl(url1, mImageLoader);
 
 
-                            if (response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getString("min")!=null) {
+                            if (response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getString("min") != "null") {
+                                Log.d("main",response.getJSONArray("forecasts").getJSONObject(0).toString());
                                 mMinCelsius0.setText(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getJSONObject("min").getString("celsius") + "℃ / ");
                             } else {
                                 mMinCelsius0.setText("--");
