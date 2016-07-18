@@ -1,8 +1,11 @@
 package com.example.admin.fashion;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                             if (response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getString("min") != "null") {
-                                Log.d("main",response.getJSONArray("forecasts").getJSONObject(0).toString());
+//                                Log.d("main",response.getJSONArray("forecasts").getJSONObject(0).toString());
                                 mMinCelsius0.setText(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getJSONObject("min").getString("celsius") + "℃ / ");
                             } else {
                                 mMinCelsius0.setText("--");
@@ -82,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
                             mMaxCelsius0.setText(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getJSONObject("max").getString("celsius") + "℃");
                             mMinCelsius1.setText(response.getJSONArray("forecasts").getJSONObject(1).getJSONObject("temperature").getJSONObject("min").getString("celsius") + "℃ / ");
-                            mMaxCelsius1.setText(response.getJSONArray("forecasts").getJSONObject(1).getJSONObject("temperature").getJSONObject("max").getString("celsius"));
+                            mMaxCelsius1.setText(response.getJSONArray("forecasts").getJSONObject(1).getJSONObject("temperature").getJSONObject("max").getString("celsius")+ "℃");
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -97,6 +100,17 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
+
+        //スワイプメニューからコーデ画面へ遷移
+        Button drawer_button1 = (Button)findViewById(R.id.drawer_button1);
+        drawer_button1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                finish();
+                Intent intent = new Intent(getApplication(),ShowFashion.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

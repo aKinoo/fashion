@@ -143,11 +143,12 @@
         android:background="#808080"
         android:orientation="vertical">
 
+        <!-- コーデ画面へのボタン -->
         <Button
             android:id="@+id/drawer_button1"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="メニュー1"/>
+            android:text="コーデを見る"/>
     </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

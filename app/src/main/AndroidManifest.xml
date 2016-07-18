@@ -15,6 +15,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- showFashion画面を登録-->
+        <activity
+            android:name=".ShowFashion"
+            android:label="@string/app_name">
+        </activity>
+
     </application>
 
 </manifest>
