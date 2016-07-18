@@ -19,6 +19,8 @@ import com.android.volley.toolbox.NetworkImageView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
     TextView mTitle;
@@ -75,17 +77,35 @@ public class MainActivity extends AppCompatActivity {
                             mImage1.setImageUrl(url1, mImageLoader);
 
 
-                            if (response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getString("min") != "null") {
+                            if (!Objects.equals(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getString("min"), "null")) {
 //                                Log.d("main",response.getJSONArray("forecasts").getJSONObject(0).toString());
                                 mMinCelsius0.setText(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getJSONObject("min").getString("celsius") + "℃ / ");
                             } else {
-                                mMinCelsius0.setText("--");
+                                mMinCelsius0.setText("--/");
+                            }
+                            if (!Objects.equals(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getString("max"), "null")) {
+//                                Log.d("main",response.getJSONArray("forecasts").getJSONObject(0).toString());
+                                mMaxCelsius0.setText(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getJSONObject("max").getString("celsius") + "℃");
+                            } else {
+                                mMaxCelsius0.setText("--");
+                            }
+                            if (!Objects.equals(response.getJSONArray("forecasts").getJSONObject(1).getJSONObject("temperature").getString("min"), "null")) {
+//                                Log.d("main",response.getJSONArray("forecasts").getJSONObject(0).toString());
+                                mMinCelsius1.setText(response.getJSONArray("forecasts").getJSONObject(1).getJSONObject("temperature").getJSONObject("min").getString("celsius") + "℃ / ");
+                            } else {
+                                mMinCelsius1.setText("--/");
+                            }
+                            if (!Objects.equals(response.getJSONArray("forecasts").getJSONObject(1).getJSONObject("temperature").getString("max"), "null")) {
+//                                Log.d("main",response.getJSONArray("forecasts").getJSONObject(0).toString());
+                                mMaxCelsius1.setText(response.getJSONArray("forecasts").getJSONObject(1).getJSONObject("temperature").getJSONObject("max").getString("celsius")+ "℃");
+                            } else {
+                                mMaxCelsius1.setText("--/");
                             }
 
 
-                            mMaxCelsius0.setText(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getJSONObject("max").getString("celsius") + "℃");
-                            mMinCelsius1.setText(response.getJSONArray("forecasts").getJSONObject(1).getJSONObject("temperature").getJSONObject("min").getString("celsius") + "℃ / ");
-                            mMaxCelsius1.setText(response.getJSONArray("forecasts").getJSONObject(1).getJSONObject("temperature").getJSONObject("max").getString("celsius")+ "℃");
+
+
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
