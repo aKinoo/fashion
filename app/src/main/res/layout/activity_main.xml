@@ -148,7 +148,13 @@
             android:id="@+id/drawer_button1"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="コーデを見る"/>
+            android:text="@string/drawer_show_fashion"/>
+        <!-- 過去のコーデ画面へのボタン -->
+        <Button
+            android:id="@+id/drawer_past_fashion"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/drawer_past_fashion"/>
     </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

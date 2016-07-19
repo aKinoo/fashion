@@ -18,9 +18,13 @@
         <!-- showFashion画面を登録-->
         <activity
             android:name=".ShowFashion"
-            android:label="@string/app_name">
+            android:label="@string/drawer_show_fashion">
         </activity>
-
+        <!-- pastFashion画面を登録　-->
+        <activity
+            android:name=".PastFashion"
+            android:label="@string/drawer_past_fashion">
+        </activity>
     </application>
 
 </manifest>

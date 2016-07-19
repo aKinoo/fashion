@@ -102,11 +102,6 @@ public class MainActivity extends AppCompatActivity {
                                 mMaxCelsius1.setText("--/");
                             }
 
-
-
-
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -128,6 +123,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 finish();
                 Intent intent = new Intent(getApplication(),ShowFashion.class);
+                startActivity(intent);
+            }
+        });
+        //スワイプメニューから過去のファッション画面へ遷移
+        Button drawer_past_fashion = (Button)findViewById(R.id.drawer_past_fashion);
+        drawer_past_fashion.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                finish();
+                Intent intent = new Intent(getApplication(),PastFashion.class);
                 startActivity(intent);
             }
         });

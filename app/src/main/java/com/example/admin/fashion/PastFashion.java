@@ -1,5 +1,3 @@
-//コーデを表示して色変える画面にする予定
-
 package com.example.admin.fashion;
 
 import android.content.Intent;
@@ -9,13 +7,13 @@ import android.view.View;
 import android.widget.Button;
 
 /**
- * Created by admin on 2016/07/18.
+ * Created by admin on 2016/07/19.
  */
-public class ShowFashion extends AppCompatActivity {
+public class PastFashion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_showfashion);  //レイアウトファイル　acitivity_showfashion.xml
+        setContentView(R.layout.activity_pastfashion);  //レイアウトファイル　acitivity_pastfashion.xml
 
         //スワイプメニューからトップ画面へ遷移
         Button drawer_button_top = (Button)findViewById(R.id.drawer_button_top);
@@ -27,13 +25,13 @@ public class ShowFashion extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //スワイプメニューから過去のファッション画面へ遷移
-        Button drawer_past_fashion = (Button)findViewById(R.id.drawer_past_fashion);
-        drawer_past_fashion.setOnClickListener(new View.OnClickListener(){
+        //スワイプメニューからコーデ画面へ遷移
+        Button drawer_button1 = (Button)findViewById(R.id.drawer_button1);
+        drawer_button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 finish();
-                Intent intent = new Intent(getApplication(),PastFashion.class);
+                Intent intent = new Intent(getApplication(),ShowFashion.class);
                 startActivity(intent);
             }
         });
