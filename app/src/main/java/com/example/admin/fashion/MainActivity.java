@@ -24,13 +24,12 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     TextView mTitle;
-    TextView mDescription;
-    TextView mDateLabel0, mDateLabel1;
-    TextView mTelop0, mTelop1;
-    NetworkImageView mImage0, mImage1;
+    TextView mDateLabel0;
+    TextView mTelop0;
+    NetworkImageView mImage0;
     ImageLoader mImageLoader;
-    TextView mMinCelsius0, mMinCelsius1;
-    TextView mMaxCelsius0, mMaxCelsius1;
+    TextView mMinCelsius0;
+    TextView mMaxCelsius0;
 
     private static final String TAG = "MainActivity";
 
@@ -39,18 +38,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mDescription = (TextView) findViewById(R.id.description);
         mTitle = (TextView) findViewById(R.id.title);
         mDateLabel0 = (TextView) findViewById(R.id.dateLabel0);
         mTelop0 = (TextView) findViewById(R.id.telop0);
-        mDateLabel1 = (TextView) findViewById(R.id.dateLabel1);
-        mTelop1 = (TextView) findViewById(R.id.telop1);
         mImage0 = (NetworkImageView) findViewById(R.id.image0);
-        mImage1 = (NetworkImageView) findViewById(R.id.image1);
         mMinCelsius0 = (TextView) findViewById(R.id.minCelsius0);
-        mMinCelsius1 = (TextView) findViewById(R.id.minCelsius1);
         mMaxCelsius0 = (TextView) findViewById(R.id.maxCelsius0);
-        mMaxCelsius1 = (TextView) findViewById(R.id.maxCelsius1);
 
         mImageLoader = MySingleton.getInstance(this).getImageLoader();
 
@@ -66,40 +59,24 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             mTitle.setText(response.getString("title"));
-                            mDescription.setText(response.getJSONObject("description").getString("text"));
+//                            13mDescription.setText(response.getJSONObject("description").getString("text"));
                             mDateLabel0.setText(response.getJSONArray("forecasts").getJSONObject(0).getString("dateLabel"));
                             mTelop0.setText(response.getJSONArray("forecasts").getJSONObject(0).getString("telop"));
-                            mDateLabel1.setText(response.getJSONArray("forecasts").getJSONObject(1).getString("dateLabel"));
-                            mTelop1.setText(response.getJSONArray("forecasts").getJSONObject(1).getString("telop"));
                             String url0 = response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("image").getString("url");
                             mImage0.setImageUrl(url0, mImageLoader);
-                            String url1 = response.getJSONArray("forecasts").getJSONObject(1).getJSONObject("image").getString("url");
-                            mImage1.setImageUrl(url1, mImageLoader);
 
 
                             if (!Objects.equals(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getString("min"), "null")) {
 //                                Log.d("main",response.getJSONArray("forecasts").getJSONObject(0).toString());
-                                mMinCelsius0.setText(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getJSONObject("min").getString("celsius") + "℃ / ");
+                                mMinCelsius0.setText(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getJSONObject("min").getString("celsius") + "℃");
                             } else {
-                                mMinCelsius0.setText("--/");
+                                mMinCelsius0.setText("--");
                             }
                             if (!Objects.equals(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getString("max"), "null")) {
 //                                Log.d("main",response.getJSONArray("forecasts").getJSONObject(0).toString());
-                                mMaxCelsius0.setText(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getJSONObject("max").getString("celsius") + "℃");
+                                mMaxCelsius0.setText(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getJSONObject("max").getString("celsius") + "℃ /");
                             } else {
-                                mMaxCelsius0.setText("--");
-                            }
-                            if (!Objects.equals(response.getJSONArray("forecasts").getJSONObject(1).getJSONObject("temperature").getString("min"), "null")) {
-//                                Log.d("main",response.getJSONArray("forecasts").getJSONObject(0).toString());
-                                mMinCelsius1.setText(response.getJSONArray("forecasts").getJSONObject(1).getJSONObject("temperature").getJSONObject("min").getString("celsius") + "℃ / ");
-                            } else {
-                                mMinCelsius1.setText("--/");
-                            }
-                            if (!Objects.equals(response.getJSONArray("forecasts").getJSONObject(1).getJSONObject("temperature").getString("max"), "null")) {
-//                                Log.d("main",response.getJSONArray("forecasts").getJSONObject(0).toString());
-                                mMaxCelsius1.setText(response.getJSONArray("forecasts").getJSONObject(1).getJSONObject("temperature").getJSONObject("max").getString("celsius")+ "℃");
-                            } else {
-                                mMaxCelsius1.setText("--/");
+                                mMaxCelsius0.setText("-- /");
                             }
 
                         } catch (JSONException e) {
