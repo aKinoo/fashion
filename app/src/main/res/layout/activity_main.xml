@@ -6,90 +6,104 @@
     android:layout_height="match_parent"
 
     tools:context="com.example.admin.fashion.MainActivity"
-    android:background="@drawable/sky">
+    android:background="#FFFFFF">
 
     <!-- メイン画面　-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="40dp">
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="title"
-            android:id="@+id/title"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:id="@+id/linearLayout0"
-            android:layout_toEndOf="@+id/title">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="dateLabel0"
-                android:id="@+id/dateLabel0"
-                android:layout_alignBottom="@+id/linearLayout0"
-                android:layout_alignEnd="@+id/title" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="telop0"
-                android:id="@+id/telop0" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/linearLayout0"
-            android:layout_alignParentStart="true"
-            android:id="@+id/linearLayout1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="dateLabel1"
-                android:id="@+id/dateLabel1"
-                android:layout_below="@+id/linearLayout1"
-                android:layout_alignParentStart="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="telop1"
-                android:id="@+id/telop1" />
-
-        </LinearLayout>
-
-        <ScrollView
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/scrollView"
-            android:layout_below="@+id/linearLayout1"
-            android:layout_alignParentStart="true" >
+            android:orientation="horizontal"
+            tools:context=".MainActivity">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="description"
-                android:id="@+id/description" />
-        </ScrollView>
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="コーディネート画像を張る部分"
+                android:layout_weight="1"
+                android:textColor="@android:color/white"
+                android:background="@android:color/holo_blue_dark"
+                android:padding="30dp"/>
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                tools:context="com.wacode.yuki.day1.MainActivity">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="title"
+                    android:id="@+id/title"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_below="@+id/title"
+                    android:layout_alignParentStart="true"
+                    android:id="@+id/linearLayout0">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="dateLabel0"
+                        android:id="@+id/dateLabel0"
+                        android:layout_alignBottom="@+id/linearLayout0"
+                        android:layout_alignEnd="@+id/title" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="telop0"
+                        android:id="@+id/telop0" />
+
+                    <com.android.volley.toolbox.NetworkImageView
+                        android:layout_width = "50dp"
+                        android:layout_height = "31dp"
+                        android:id = "@+id/image0" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="maxCelsius0"
+                        android:id="@+id/maxCelsius0"
+                        android:textColor="@android:color/holo_red_dark" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="minCelsius0"
+                        android:id="@+id/minCelsius0"
+                        android:textColor="@android:color/holo_blue_dark" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
     </RelativeLayout>
 
 
