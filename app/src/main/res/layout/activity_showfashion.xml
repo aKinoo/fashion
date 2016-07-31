@@ -26,12 +26,22 @@
                 android:id="@+id/top_color1"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="color1"/>
+                android:text="c1"/>
                 <Button
                     android:id="@+id/top_color2"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:text="color2"/>
+                    android:text="c2"/>
+                <Button
+                    android:id="@+id/top_color3"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="c3"/>
+                <Button
+                    android:id="@+id/top_color4"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="c4"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -100,6 +110,16 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="color2"/>
+                <Button
+                    android:id="@+id/bottom_color3"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="color3"/>
+                <Button
+                    android:id="@+id/bottom_color4"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="color4"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

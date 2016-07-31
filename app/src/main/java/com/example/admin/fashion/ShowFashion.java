@@ -13,6 +13,9 @@ import android.widget.ImageView;
 /**
  * Created by admin on 2016/07/18.
  */
+
+
+
 public class ShowFashion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -25,14 +28,65 @@ public class ShowFashion extends AppCompatActivity {
         image_bottom.setImageResource(R.drawable.skirt);
 
         final CanvasView canvas_top = (CanvasView)this.findViewById(R.id.canvas_top);
-        CanvasView canvas_bottom = (CanvasView)this.findViewById(R.id.canvas_bottom);
+        final CanvasView canvas_bottom = (CanvasView)this.findViewById(R.id.canvas_bottom);
 
-        Button button = (Button) findViewById(R.id.top_color1);
-        button.setOnClickListener(new View.OnClickListener() {
+        //トップスカラーボタン
+        Button top_color1 = (Button) findViewById(R.id.top_color1);
+        top_color1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                canvas_top.flag = true;
-                canvas_top.showCanvas();
+                canvas_top.showCanvas(1);
+            }
+        });
+        Button top_color2 = (Button) findViewById(R.id.top_color2);
+        top_color2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                canvas_top.showCanvas(2);
+            }
+        });
+        Button top_color3 = (Button) findViewById(R.id.top_color3);
+        top_color3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                canvas_top.showCanvas(4);
+            }
+        });
+        Button top_color4 = (Button) findViewById(R.id.top_color4);
+        top_color4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                canvas_top.showCanvas(5);
+            }
+        });
+
+        //ボトムスカラーボタン
+        Button bottom_color1 = (Button)findViewById(R.id.bottom_color1);
+        bottom_color1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                canvas_bottom.showCanvas(1);
+            }
+        });
+        Button bottom_color2 = (Button)findViewById(R.id.bottom_color2);
+        bottom_color2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                canvas_bottom.showCanvas(2);
+            }
+        });
+        Button bottom_color3 = (Button)findViewById(R.id.bottom_color3);
+        bottom_color3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                canvas_bottom.showCanvas(3);
+            }
+        });
+        Button bottom_color4 = (Button)findViewById(R.id.bottom_color4);
+        bottom_color4.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                canvas_bottom.showCanvas(4);
             }
         });
 
