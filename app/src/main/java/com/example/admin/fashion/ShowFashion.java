@@ -23,9 +23,9 @@ public class ShowFashion extends AppCompatActivity {
         setContentView(R.layout.activity_showfashion);  //レイアウトファイル　acitivity_showfashion.xml
 
         ImageView image_top = (ImageView)findViewById(R.id.image_top);
-        image_top.setImageResource(R.drawable.tanktop);
+        image_top.setImageResource(R.drawable.tanktop1);
         ImageView image_bottom = (ImageView)findViewById(R.id.image_bottom);
-        image_bottom.setImageResource(R.drawable.skirt);
+        image_bottom.setImageResource(R.drawable.shortskirt1);
 
         final CanvasView canvas_top = (CanvasView)this.findViewById(R.id.canvas_top);
         final CanvasView canvas_bottom = (CanvasView)this.findViewById(R.id.canvas_bottom);
