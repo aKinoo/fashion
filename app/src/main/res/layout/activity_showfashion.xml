@@ -3,7 +3,7 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="40dp">
+    android:background="#FFFFFF">
 
     <!-- mainレイアウト -->
     <LinearLayout
@@ -12,45 +12,52 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            android:layout_weight="1"
+            android:gravity="center"
             >
             <!--　トップス色選択 -->
             <LinearLayout
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:layout_weight="1">
+                >
                 <Button
                 android:id="@+id/top_color1"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/color_button_size"
+                android:layout_height="@dimen/color_button_size"
+                android:layout_marginTop="@dimen/color_button_margin_top"
                 android:text="c1"/>
                 <Button
                     android:id="@+id/top_color2"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="@dimen/color_button_size"
+                    android:layout_height="@dimen/color_button_size"
+                    android:layout_marginTop="@dimen/color_button_margin_top"
                     android:text="c2"/>
                 <Button
                     android:id="@+id/top_color3"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="@dimen/color_button_size"
+                    android:layout_height="@dimen/color_button_size"
+                    android:layout_marginTop="@dimen/color_button_margin_top"
                     android:text="c3"/>
                 <Button
                     android:id="@+id/top_color4"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="@dimen/color_button_size"
+                    android:layout_height="@dimen/color_button_size"
+                    android:layout_marginTop="@dimen/color_button_margin_top"
                     android:text="c4"/>
             </LinearLayout>
         </LinearLayout>
 
         <!-- 中心のファッション表示 -->
         <LinearLayout
-            android:layout_width="200dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="2"
+            android:gravity="center"
             >
             <!-- トップス表示　-->
             <FrameLayout
@@ -66,7 +73,7 @@
                     />
                 <ImageView
                     android:id="@+id/image_top"
-                    android:scaleType="centerInside"
+                    android:scaleType="centerCrop"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </FrameLayout>
@@ -78,12 +85,11 @@
                     android:id="@+id/canvas_bottom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"/>
                 <ImageView
                     android:id="@+id/image_bottom"
-                    android:scaleType="centerInside"
+                    android:scaleType="centerCrop"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </FrameLayout>
@@ -94,6 +100,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:layout_weight="1"
+            android:gravity="center"
             >
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -102,24 +109,28 @@
                 android:gravity="bottom">
                 <Button
                     android:id="@+id/bottom_color1"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="color1"/>
+                    android:layout_width="@dimen/color_button_size"
+                    android:layout_height="@dimen/color_button_size"
+                    android:layout_marginTop="@dimen/color_button_margin_top"
+                    android:text="c1"/>
                 <Button
                     android:id="@+id/bottom_color2"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="color2"/>
+                    android:layout_width="@dimen/color_button_size"
+                    android:layout_height="@dimen/color_button_size"
+                    android:layout_marginTop="@dimen/color_button_margin_top"
+                    android:text="c2"/>
                 <Button
                     android:id="@+id/bottom_color3"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="color3"/>
+                    android:layout_width="@dimen/color_button_size"
+                    android:layout_height="@dimen/color_button_size"
+                    android:layout_marginTop="@dimen/color_button_margin_top"
+                    android:text="c3"/>
                 <Button
                     android:id="@+id/bottom_color4"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="color4"/>
+                    android:layout_width="@dimen/color_button_size"
+                    android:layout_height="@dimen/color_button_size"
+                    android:layout_marginTop="@dimen/color_button_margin_top"
+                    android:text="c4"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
