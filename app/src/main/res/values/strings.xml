@@ -3,4 +3,6 @@
     <string name="drawer_top">トップ</string>
     <string name="drawer_show_fashion">今日のオススメコーデ</string>
     <string name="drawer_past_fashion">過去のコーデ一覧</string>
+    <string name="color_top_setting">トップス色の設定</string>
+    <string name="title_color_setting">色を選択してください</string>
 </resources>
