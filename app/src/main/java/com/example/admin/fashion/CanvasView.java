@@ -38,4 +38,8 @@ public class CanvasView extends View {
         index = idx;
         invalidate();
     }
+
+    int[][] getColor(){
+        return color;
+    }
 }

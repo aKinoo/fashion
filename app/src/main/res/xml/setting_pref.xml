@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:key="color_setting"
+        android:title="トップス色の設定1"
+        android:dialogTitle="@string/title_color_setting"
+        android:entries="@array/list_colors"
+        android:entryValues="@array/list_col_val"
+        android:defaultValue="0"
+    />
+    <ListPreference
+        android:key="color_setting2"
+        android:title="トップス色の設定2"
+        android:dialogTitle="@string/title_color_setting"
+        android:entries="@array/list_colors"
+        android:entryValues="@array/list_col_val"
+        android:defaultValue="1" />
+
+    <ListPreference
+        android:key="color_setting3"
+        android:title="トップス色の設定3"
+        android:dialogTitle="@string/title_color_setting"
+        android:entries="@array/list_colors"
+        android:entryValues="@array/list_col_val"
+        android:defaultValue="2"
+        />
+
+    <ListPreference
+        android:key="color_setting4"
+        android:title="トップス色の設定4"
+        android:dialogTitle="@string/title_color_setting"
+        android:entries="@array/list_colors"
+        android:entryValues="@array/list_col_val"
+        android:defaultValue="3"
+        />
+
+</PreferenceScreen>
