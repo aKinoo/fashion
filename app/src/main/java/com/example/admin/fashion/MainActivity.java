@@ -1,12 +1,19 @@
 package com.example.admin.fashion;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
+import android.provider.CalendarContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -19,6 +26,8 @@ import com.android.volley.toolbox.NetworkImageView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
     ImageLoader mImageLoader;
     TextView mMinCelsius0;
     TextView mMaxCelsius0;
+    //乗換案内用
+    private Spinner nSpinner;
+    private String spinnerItems[] = {"1限", "2限", "3限", "4限","5限"};
+    private TrainTime tt;
+    private TextView textView;
+
 
     private static final String TAG = "MainActivity";
 
@@ -92,6 +107,45 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
+
+        //乗換案内
+        tt = new TrainTime();
+        nSpinner = (Spinner)findViewById(R.id.spinner1);
+        final TextView textView = (TextView) findViewById(R.id.text_view);
+        // ArrayAdapter
+        ArrayAdapter<String> adapter
+                = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerItems);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // spinner に adapter をセット
+        nSpinner.setAdapter(adapter);
+
+        // リスナーを登録
+        nSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            //アイテムが選択された時
+            public void onItemSelected(AdapterView<?> parent, View viw, int arg2, long arg3) {
+                Spinner spinner = (Spinner) parent;
+                String item = (String) spinner.getSelectedItem();
+
+                if (item.equals("1限")) {
+                    textView.setText(tt.text(1));
+                } else if (item.equals("2限")) {
+                    textView.setText(tt.text(2));
+                } else if (item.equals("3限")) {
+                    textView.setText(tt.text(3));
+                }else if (item.equals("4限")) {
+                    textView.setText(tt.text(4));
+                }else if (item.equals("5限")){
+                    textView.setText(tt.text(5));
+                }else{
+                    textView.setText("出発時刻");
+                }
+            }
+
+            //アイテムが選択されなかった
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
 
         //スワイプメニューからコーデ画面へ遷移
         Button drawer_button1 = (Button)findViewById(R.id.drawer_button1);
