@@ -49,6 +49,50 @@
                     android:layout_marginTop="@dimen/color_button_margin_top"
                     android:text="c4"/>
             </LinearLayout>
+            <!-- トップス柄選択　-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="20dp"
+                >
+                <ImageButton
+                    android:id="@+id/top_design0"
+                    android:layout_width="@dimen/color_button_size"
+                    android:layout_height="@dimen/color_button_size"
+                    android:layout_marginTop="@dimen/color_button_margin_top"
+                    android:background="#696969"
+                    />
+                <ImageButton
+                    android:id="@+id/top_design1"
+                    android:layout_width="@dimen/color_button_size"
+                    android:layout_height="@dimen/color_button_size"
+                    android:layout_marginTop="@dimen/color_button_margin_top"
+                    android:background="#696969"
+                    android:src="@drawable/lblack"
+                    />
+                <ImageButton
+                    android:id="@+id/top_design2"
+                    android:layout_width="@dimen/color_button_size"
+                    android:layout_height="@dimen/color_button_size"
+                    android:layout_marginTop="@dimen/color_button_margin_top"
+                    android:background="#696969"
+                    android:src="@drawable/pinckflower"/>
+                <ImageButton
+                    android:id="@+id/top_design3"
+                    android:layout_width="@dimen/color_button_size"
+                    android:layout_height="@dimen/color_button_size"
+                    android:layout_marginTop="@dimen/color_button_margin_top"
+                    android:background="#696969"
+                    android:src="@drawable/sblack"/>
+                <ImageButton
+                    android:id="@+id/top_design4"
+                    android:layout_width="@dimen/color_button_size"
+                    android:layout_height="@dimen/color_button_size"
+                    android:layout_marginTop="@dimen/color_button_margin_top"
+                    android:background="#696969"
+                    android:src="@drawable/swhite"/>
+            </LinearLayout>
         </LinearLayout>
 
         <!-- 中心のファッション表示 -->
@@ -71,6 +115,13 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     />
+                <!-- 柄　-->
+                <ImageView
+                    android:id="@+id/design_top"
+                    android:scaleType="centerCrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <!-- 服装　-->
                 <ImageView
                     android:id="@+id/image_top"
                     android:scaleType="centerCrop"
@@ -87,6 +138,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"/>
+                <!-- 柄　-->
+                <ImageView
+                    android:id="@+id/design_bottom"
+                    android:scaleType="centerCrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <!-- 服装　-->
                 <ImageView
                     android:id="@+id/image_bottom"
                     android:scaleType="centerCrop"
@@ -131,6 +189,57 @@
                     android:layout_height="@dimen/color_button_size"
                     android:layout_marginTop="@dimen/color_button_margin_top"
                     android:text="c4"/>
+            </LinearLayout>
+            <!-- ボトムス柄選択　-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="bottom"
+                android:layout_marginLeft="20dp"
+                >
+                <ImageButton
+                    android:id="@+id/bottom_design0"
+                    android:layout_width="@dimen/color_button_size"
+                    android:layout_height="@dimen/color_button_size"
+                    android:layout_marginTop="@dimen/color_button_margin_top"
+                    android:background="#696969"
+                    />
+                <ImageButton
+                    android:id="@+id/bottom_design1"
+                    android:layout_width="@dimen/color_button_size"
+                    android:layout_height="@dimen/color_button_size"
+                    android:layout_marginTop="@dimen/color_button_margin_top"
+                    android:background="#696969"
+                    android:src="@drawable/lblack"/>
+                <ImageButton
+                    android:id="@+id/bottom_design2"
+                    android:layout_width="@dimen/color_button_size"
+                    android:layout_height="@dimen/color_button_size"
+                    android:layout_marginTop="@dimen/color_button_margin_top"
+                    android:background="#696969"
+                    android:src="@drawable/pinckflower"/>
+                <ImageButton
+                    android:id="@+id/bottom_design3"
+                    android:layout_width="@dimen/color_button_size"
+                    android:layout_height="@dimen/color_button_size"
+                    android:layout_marginTop="@dimen/color_button_margin_top"
+                    android:background="#696969"
+                    android:src="@drawable/sblack"/>
+                <ImageButton
+                    android:id="@+id/bottom_design4"
+                    android:layout_width="@dimen/color_button_size"
+                    android:layout_height="@dimen/color_button_size"
+                    android:layout_marginTop="@dimen/color_button_margin_top"
+                    android:background="#696969"
+                    android:src="@drawable/swhite"/>
+                <ImageButton
+                    android:id="@+id/bottom_design5"
+                    android:layout_width="@dimen/color_button_size"
+                    android:layout_height="@dimen/color_button_size"
+                    android:layout_marginTop="@dimen/color_button_margin_top"
+                    android:background="#696969"
+                    android:src="@drawable/brown"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

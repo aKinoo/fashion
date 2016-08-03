@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 /**
@@ -26,9 +28,7 @@ public class ShowFashion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_showfashion);  //レイアウトファイル　acitivity_showfashion.xml
-
        setView();
-
     }
 
     @Override
@@ -39,10 +39,103 @@ public class ShowFashion extends AppCompatActivity {
 
     public void setView(){
 
-        ImageView image_top = (ImageView)findViewById(R.id.image_top);
+        final ImageView image_top = (ImageView)findViewById(R.id.image_top);
         image_top.setImageResource(R.drawable.tanktop);
-        ImageView image_bottom = (ImageView)findViewById(R.id.image_bottom);
+        final ImageView image_bottom = (ImageView)findViewById(R.id.image_bottom);
         image_bottom.setImageResource(R.drawable.shortskirt);
+        //柄表示
+        final ImageView design_top = (ImageView)findViewById(R.id.design_top);
+        final ImageView design_bottom = (ImageView)findViewById(R.id.design_bottom);
+
+        ImageButton top_design0 = (ImageButton)findViewById(R.id.top_design0);
+        top_design0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                design_top.setVisibility(View.INVISIBLE);
+            }
+        });
+        ImageButton top_design1 = (ImageButton)findViewById(R.id.top_design1);
+        top_design1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                design_top.setVisibility(View.VISIBLE);
+                design_top.setImageResource(R.drawable.lblack);
+            }
+        });
+        ImageButton top_design2 = (ImageButton)findViewById(R.id.top_design2);
+        top_design2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                design_top.setVisibility(View.VISIBLE);
+                design_top.setImageResource(R.drawable.pinckflower);
+            }
+        });
+        ImageButton top_design3 = (ImageButton)findViewById(R.id.top_design3);
+        top_design3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                design_top.setVisibility(View.VISIBLE);
+                design_top.setImageResource(R.drawable.sblack);
+            }
+        });
+        ImageButton top_design4 = (ImageButton)findViewById(R.id.top_design4);
+        top_design4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                design_top.setVisibility(View.VISIBLE);
+                design_top.setImageResource(R.drawable.swhite);
+            }
+        });
+        //ボトムス柄ボタン
+        ImageButton bottom_design0 = (ImageButton)findViewById(R.id.bottom_design0);
+        bottom_design0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                design_bottom.setVisibility(View.INVISIBLE);
+            }
+        });
+        ImageButton bottom_design1 = (ImageButton)findViewById(R.id.bottom_design1);
+        bottom_design1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                design_bottom.setVisibility(View.VISIBLE);
+                design_bottom.setImageResource(R.drawable.lblack);
+            }
+        });
+        ImageButton bottom_design2 = (ImageButton)findViewById(R.id.bottom_design2);
+        bottom_design2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                design_bottom.setVisibility(View.VISIBLE);
+                design_bottom.setImageResource(R.drawable.pinckflower);
+            }
+        });
+        ImageButton bottom_design3 = (ImageButton)findViewById(R.id.bottom_design3);
+        bottom_design3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                design_bottom.setVisibility(View.VISIBLE);
+                design_bottom.setImageResource(R.drawable.sblack);
+            }
+        });
+        ImageButton bottom_design4 = (ImageButton)findViewById(R.id.bottom_design4);
+        bottom_design4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                design_bottom.setVisibility(View.VISIBLE);
+                design_bottom.setImageResource(R.drawable.swhite);
+            }
+        });
+        ImageButton bottom_design5 = (ImageButton)findViewById(R.id.bottom_design5);
+        bottom_design5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                design_bottom.setVisibility(View.VISIBLE);
+                design_bottom.setImageResource(R.drawable.brown);
+            }
+        });
+
+
 
         final CanvasView canvas_top = (CanvasView)this.findViewById(R.id.canvas_top);
         final CanvasView canvas_bottom = (CanvasView)this.findViewById(R.id.canvas_bottom);
@@ -155,6 +248,7 @@ public class ShowFashion extends AppCompatActivity {
             }
         });
     }
+
 
     //設定
     @Override
