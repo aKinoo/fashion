@@ -21,8 +21,6 @@ import android.widget.ImageView;
  */
 
 
-//test messages
-
 public class ShowFashion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -48,8 +46,9 @@ public class ShowFashion extends AppCompatActivity {
         final CanvasView canvas_top = (CanvasView)this.findViewById(R.id.canvas_top);
         final CanvasView canvas_bottom = (CanvasView)this.findViewById(R.id.canvas_bottom);
 
-        int[][] color = canvas_top.getColor();
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ShowFashion.this);
+        
+        int[][] color = canvas_top.getColor();
         final int[] top_color = new int[4];
         for(int i = 0; i < 4;i++){
 //            Log.d("main",SettingPrefActivity.PREF_COLOR_SETTING[i]);
