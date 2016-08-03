@@ -57,12 +57,10 @@ public class MainActivity extends AppCompatActivity {
         //設定から値を取得
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         String arrivalStr = pref.getString(SettingPrefActivityMain.PREF_TIME_SETTING,"10");
-        int arrival = Integer.parseInt(arrivalStr);     //学校に何分前に到着するか デフォルト値10
-        String commuteStr = pref.getString(SettingPrefActivityMain.PREF_TIME_SETTING_TO_SHINJYUKU,"5");
-        int commute = Integer.parseInt(commuteStr);     //新宿までの所要時間　デフォルト値5
-        Log.d("arrival",arrival+"");
-        Log.d("shinhyuku",commute+"");
-
+        final int arrival = Integer.parseInt(arrivalStr);     //学校に何分前に到着するか デフォルト値10
+        final String commuteStr = pref.getString(SettingPrefActivityMain.PREF_TIME_SETTING_TO_SHINJYUKU,"5");
+        final int commute = Integer.parseInt(commuteStr);     //新宿までの所要時間　デフォルト値5
+  
         mTitle = (TextView) findViewById(R.id.title);
         mDateLabel0 = (TextView) findViewById(R.id.dateLabel0);
         mTelop0 = (TextView) findViewById(R.id.telop0);
@@ -137,15 +135,15 @@ public class MainActivity extends AppCompatActivity {
                 String item = (String) spinner.getSelectedItem();
 
                 if (item.equals("1限")) {
-                    textView.setText(tt.text(1));
+                    textView.setText(tt.text(1,arrival,commute));
                 } else if (item.equals("2限")) {
-                    textView.setText(tt.text(2));
+                    textView.setText(tt.text(2,arrival,commute));
                 } else if (item.equals("3限")) {
-                    textView.setText(tt.text(3));
+                    textView.setText(tt.text(3,arrival,commute));
                 }else if (item.equals("4限")) {
-                    textView.setText(tt.text(4));
+                    textView.setText(tt.text(4,arrival,commute));
                 }else if (item.equals("5限")){
-                    textView.setText(tt.text(5));
+                    textView.setText(tt.text(5,arrival,commute));
                 }else{
                     textView.setText("出発時刻");
                 }
