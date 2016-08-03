@@ -5,7 +5,7 @@ import java.util.TreeSet;
 /**
  * Created by admin on 2016/08/03.
  */
-public class TrainTime  {
+public class Traintime {
 
     //http://www.jreast-timetable.jp/1608/timetable/tt0866/0866060.html
     //中央線快速時刻表（新宿から八王子方面）
@@ -25,7 +25,7 @@ public class TrainTime  {
     int four[]={2,9,12,17,24,31,39,46,54};
     int five[]={2,9,12,15,24,31,39,47,54};*/
 
-    public TrainTime(){
+    public Traintime(){
 
     }
 

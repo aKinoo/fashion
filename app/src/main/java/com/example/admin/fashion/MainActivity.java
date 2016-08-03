@@ -1,9 +1,6 @@
 package com.example.admin.fashion;
 
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.database.Cursor;
-import android.provider.CalendarContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,8 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -28,8 +23,6 @@ import com.android.volley.toolbox.NetworkImageView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     //乗換案内用
     private Spinner nSpinner;
     private String spinnerItems[] = {"1限", "2限", "3限", "4限","5限"};
-    private TrainTime tt;
+    private Traintime tt;
     private TextView textView;
 
 
@@ -112,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
 
         //乗換案内
-        tt = new TrainTime();
+        tt = new Traintime();
         nSpinner = (Spinner)findViewById(R.id.spinner1);
         final TextView textView = (TextView) findViewById(R.id.text_view);
         // ArrayAdapter
