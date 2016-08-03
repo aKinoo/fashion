@@ -22,7 +22,7 @@
         </activity>
         <!-- showFashion画面を登録-->
         <activity
-            android:name=".ShowFashion "
+            android:name=".ShowFashion"
             android:label="@string/drawer_show_fashion"
             android:screenOrientation="landscape">
         </activity>
