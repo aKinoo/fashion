@@ -6,11 +6,14 @@ import android.preference.ListPreference;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
 
+import java.util.List;
+
 /**
  * Created by admin on 2016/08/03.
  */
 public class SettingPrefActivityMain extends AppCompatActivity {
     static public final String PREF_TIME_SETTING = "time_setting";
+    static public final String PREF_TIME_SETTING_TO_SHINJYUKU = "time_setting_to_shinjyuku";
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -62,6 +65,8 @@ public class SettingPrefActivityMain extends AppCompatActivity {
 //            Log.d("main",PREF_COLOR_SETTING[i]);
             ListPreference prefFraction = (ListPreference)findPreference(PREF_TIME_SETTING);
             prefFraction.setSummary(prefFraction.getEntry());
+            ListPreference prefFraction2 = (ListPreference)findPreference(PREF_TIME_SETTING_TO_SHINJYUKU);
+            prefFraction2.setSummary(prefFraction2.getEntry());
         }
     }
 }

@@ -1,9 +1,8 @@
 package com.example.admin.fashion;
 
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.database.Cursor;
-import android.provider.CalendarContract;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,8 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -28,8 +25,6 @@ import com.android.volley.toolbox.NetworkImageView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     //乗換案内用
     private Spinner nSpinner;
     private String spinnerItems[] = {"1限", "2限", "3限", "4限","5限"};
-    private TrainTime tt;
+    private Traintime tt;
     private TextView textView;
 
 
@@ -55,6 +50,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setView();
+    }
+
+    private void setView(){
+        //設定から値を取得
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        String arrivalStr = pref.getString(SettingPrefActivityMain.PREF_TIME_SETTING,"10");
+        int arrival = Integer.parseInt(arrivalStr);     //学校に何分前に到着するか デフォルト値10
+        String commuteStr = pref.getString(SettingPrefActivityMain.PREF_TIME_SETTING_TO_SHINJYUKU,"5");
+        int commute = Integer.parseInt(commuteStr);     //新宿までの所要時間　デフォルト値5
+        Log.d("arrival",arrival+"");
+        Log.d("shinhyuku",commute+"");
 
         mTitle = (TextView) findViewById(R.id.title);
         mDateLabel0 = (TextView) findViewById(R.id.dateLabel0);
@@ -112,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
 
         //乗換案内
-        tt = new TrainTime();
+        tt = new Traintime();
         nSpinner = (Spinner)findViewById(R.id.spinner1);
         final TextView textView = (TextView) findViewById(R.id.text_view);
         // ArrayAdapter
@@ -170,7 +177,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        setView();
     }
 
     @Override
