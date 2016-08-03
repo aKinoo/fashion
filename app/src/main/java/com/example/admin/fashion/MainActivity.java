@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         drawer_button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                finish();
+//                finish();
                 Intent intent = new Intent(getApplication(),ShowFashion.class);
                 startActivity(intent);
             }
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         drawer_past_fashion.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                finish();
+//                finish();
                 Intent intent = new Intent(getApplication(),PastFashion.class);
                 startActivity(intent);
             }
