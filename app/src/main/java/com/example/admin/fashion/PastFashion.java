@@ -49,7 +49,7 @@ public class PastFashion extends AppCompatActivity {
                     imageView.setImageDrawable(null);
                     container.removeView(imageView);
                 }
-                super.destroyItem(container, position, object);
+//                super.destroyItem(container, position, object);
             }
 
             @Override
