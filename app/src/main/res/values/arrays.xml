@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <string-array name="list_colors">
+        <!-- 0白、1水色、2紺、3モスグリーン,4黄,5茶,6ピンク7,灰,8黒-->
+        <item>白</item>
+        <item>水色</item>
+        <item>紺</item>
+        <item>モスグリーン</item>
+        <item>黄</item>
+        <item>茶</item>
+        <item>ピンク</item>
+        <item>灰</item>
+        <item>黒</item>
+    </string-array>
+    <string-array name="list_col_val">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+    <string-array name="list_time">
+        <item>10分前</item>
+        <item>15分前</item>
+        <item>20分前</item>
+        <item>25分前</item>
+        <item>30分前</item>
+    </string-array>
+    <string-array name="list_time_val">
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+    </string-array>
+</resources>
