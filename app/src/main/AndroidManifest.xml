@@ -22,7 +22,7 @@
         </activity>
         <!-- showFashion画面を登録-->
         <activity
-            android:name=".ShowFashion "
+            android:name=".ShowFashion"
             android:label="@string/drawer_show_fashion"
             android:screenOrientation="landscape">
         </activity>
@@ -30,6 +30,12 @@
         <activity
             android:name=".PastFashion"
             android:label="@string/drawer_past_fashion"
+            android:screenOrientation="landscape">
+        </activity>
+        <!-- 設定画面を追加-->
+        <activity
+            android:name=".SettingPrefActivity"
+            android:label="設定"
             android:screenOrientation="landscape">
         </activity>
 

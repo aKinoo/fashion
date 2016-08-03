@@ -13,7 +13,7 @@ public class PastFashion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pastfashion);  //レイアウトファイル　acitivity_pastfashion.xml
+        setContentView(R.layout.activity_fashioncalender);  //レイアウトファイル　acitivity_fashioncalender.xml
 
         //スワイプメニューからトップ画面へ遷移
         Button drawer_button_top = (Button)findViewById(R.id.drawer_button_top);
