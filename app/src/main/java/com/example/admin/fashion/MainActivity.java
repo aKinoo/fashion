@@ -1,6 +1,8 @@
 package com.example.admin.fashion;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,6 +50,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setView();
+    }
+
+    private void setView(){
+        //設定から値を取得
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        String arrivalStr = pref.getString(SettingPrefActivityMain.PREF_TIME_SETTING,"10");
+        int arrival = Integer.parseInt(arrivalStr);     //学校に何分前に到着するか デフォルト値10
+        String commuteStr = pref.getString(SettingPrefActivityMain.PREF_TIME_SETTING_TO_SHINJYUKU,"5");
+        int commute = Integer.parseInt(commuteStr);     //新宿までの所要時間　デフォルト値5
+        Log.d("arrival",arrival+"");
+        Log.d("shinhyuku",commute+"");
 
         mTitle = (TextView) findViewById(R.id.title);
         mDateLabel0 = (TextView) findViewById(R.id.dateLabel0);
@@ -148,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         drawer_button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                finish();
+//                finish();
                 Intent intent = new Intent(getApplication(),ShowFashion.class);
                 startActivity(intent);
             }
@@ -158,12 +172,17 @@ public class MainActivity extends AppCompatActivity {
         drawer_past_fashion.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                finish();
+//                finish();
                 Intent intent = new Intent(getApplication(),PastFashion.class);
                 startActivity(intent);
             }
         });
+    }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        setView();
     }
 
     @Override

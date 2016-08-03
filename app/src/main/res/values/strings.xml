@@ -6,4 +6,5 @@
     <string name="color_top_setting">トップス色の設定</string>
     <string name="title_color_setting">色を選択してください</string>
     <string name="title_time_setting">到着時間を選択してください</string>
+    <string name="title_time_setting_to_shinhyuku">所要時間を選択してください</string>
 </resources>

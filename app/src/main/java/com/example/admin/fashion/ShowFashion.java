@@ -223,8 +223,9 @@ public class ShowFashion extends AppCompatActivity {
         drawer_button_top.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                finish();
+//                finish();
                 Intent intent = new Intent(getApplication(),MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
         });
@@ -233,11 +234,17 @@ public class ShowFashion extends AppCompatActivity {
         drawer_past_fashion.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                finish();
+//                finish();
                 Intent intent = new Intent(getApplication(),PastFashion.class);
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        finish();
     }
 
 

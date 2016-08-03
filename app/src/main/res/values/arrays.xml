@@ -37,4 +37,14 @@
         <item>25</item>
         <item>30</item>
     </string-array>
+    <string-array name="list_time2">
+        <item>5分</item>
+        <item>10分</item>
+        <item>15分</item>
+    </string-array>
+    <string-array name="list_time_val2">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+    </string-array>
 </resources>
