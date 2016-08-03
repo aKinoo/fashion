@@ -23,4 +23,18 @@
         <item>7</item>
         <item>8</item>
     </string-array>
+    <string-array name="list_time">
+        <item>10分前</item>
+        <item>15分前</item>
+        <item>20分前</item>
+        <item>25分前</item>
+        <item>30分前</item>
+    </string-array>
+    <string-array name="list_time_val">
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+    </string-array>
 </resources>

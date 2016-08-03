@@ -38,6 +38,7 @@ public class ShowFashion extends AppCompatActivity {
     }
 
     public void setView(){
+
         ImageView image_top = (ImageView)findViewById(R.id.image_top);
         image_top.setImageResource(R.drawable.tanktop);
         ImageView image_bottom = (ImageView)findViewById(R.id.image_bottom);
@@ -57,6 +58,13 @@ public class ShowFashion extends AppCompatActivity {
             String c = pref.getString(SettingPrefActivity.PREF_COLOR_SETTING[i],num);
 //            Log.d("main",c);
             top_color[i] = Integer.parseInt(c);
+        }
+        final int[] bottom_color = new int[4];
+        for(int i = 4;i<8;i++){
+            String num = i + "";
+            String c = pref.getString(SettingPrefActivity.PREF_COLOR_SETTING[i],num);
+//            Log.d("main",c);
+            bottom_color[i-4] = Integer.parseInt(c);
         }
         //トップスカラーボタン
         Button top_color1 = (Button) findViewById(R.id.top_color1);
@@ -94,35 +102,35 @@ public class ShowFashion extends AppCompatActivity {
 
         //ボトムスカラーボタン
         Button bottom_color1 = (Button)findViewById(R.id.bottom_color1);
-        bottom_color1.setBackgroundColor(Color.argb(125,color[1][0],color[1][1],color[1][2]));
+        bottom_color1.setBackgroundColor(Color.argb(125,color[bottom_color[0]][0],color[bottom_color[0]][1],color[bottom_color[0]][2]));
         bottom_color1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                canvas_bottom.showCanvas(1);
+                canvas_bottom.showCanvas(bottom_color[0]);
             }
         });
         Button bottom_color2 = (Button)findViewById(R.id.bottom_color2);
-        bottom_color2.setBackgroundColor(Color.argb(125,color[2][0],color[2][1],color[2][2]));
+        bottom_color2.setBackgroundColor(Color.argb(125,color[bottom_color[1]][0],color[bottom_color[1]][1],color[bottom_color[1]][2]));
         bottom_color2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                canvas_bottom.showCanvas(2);
+                canvas_bottom.showCanvas(bottom_color[1]);
             }
         });
         Button bottom_color3 = (Button)findViewById(R.id.bottom_color3);
-        bottom_color3.setBackgroundColor(Color.argb(125,color[3][0],color[3][1],color[3][2]));
+        bottom_color3.setBackgroundColor(Color.argb(125,color[bottom_color[2]][0],color[bottom_color[2]][1],color[bottom_color[2]][2]));
         bottom_color3.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                canvas_bottom.showCanvas(3);
+                canvas_bottom.showCanvas(bottom_color[2]);
             }
         });
         Button bottom_color4 = (Button)findViewById(R.id.bottom_color4);
-        bottom_color4.setBackgroundColor(Color.argb(125,color[4][0],color[4][1],color[4][2]));
+        bottom_color4.setBackgroundColor(Color.argb(125,color[bottom_color[3]][0],color[bottom_color[3]][1],color[bottom_color[3]][2]));
         bottom_color4.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                canvas_bottom.showCanvas(4);
+                canvas_bottom.showCanvas(bottom_color[3]);
             }
         });
 
@@ -148,6 +156,7 @@ public class ShowFashion extends AppCompatActivity {
         });
     }
 
+    //設定
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.main,menu);

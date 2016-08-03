@@ -3,17 +3,14 @@ package com.example.admin.fashion;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.ListPreference;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 /**
- * Created by admin on 2016/08/02.
+ * Created by admin on 2016/08/03.
  */
-public class SettingPrefActivity extends AppCompatActivity {
-    static public final String[] PREF_COLOR_SETTING = {"color_setting","color_setting2","color_setting3","color_setting4","bcolor_setting1","bcolor_setting2","bcolor_setting3","bcolor_setting4"};
-
+public class SettingPrefActivityMain extends AppCompatActivity {
+    static public final String PREF_TIME_SETTING = "time_setting";
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -27,17 +24,12 @@ public class SettingPrefActivity extends AppCompatActivity {
     }
 
     //設定画面のPrefFragmentクラス
-    public static class PrefFragment extends PreferenceFragment{
+    public static class PrefFragment extends PreferenceFragment {
         @Override
         public void onCreate(Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.setting_pref);
-            for(int i = 0; i < 8;i++) {
-                //Summaryを設定
-//                Log.d("main","test");
-                setSummaryFraction(i);
-            }
-
+            addPreferencesFromResource(R.xml.setting_pref_main);
+            setSummaryFraction();
         }
 
         //設定値が変更された時のリスナーを登録
@@ -61,23 +53,15 @@ public class SettingPrefActivity extends AppCompatActivity {
                 = new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                for(int i = 0; i<8;i++) {
-                    if (key.equals(PREF_COLOR_SETTING[i])) {
-                        setSummaryFraction(i);
-                    }
-
-                }
+                setSummaryFraction();
             }
         };
 
         //FractionのSummaryを設定
-        private void setSummaryFraction(int i){
-            Log.d("main",PREF_COLOR_SETTING[i]);
-            ListPreference prefFraction = (ListPreference)findPreference(PREF_COLOR_SETTING[i]);
+        private void setSummaryFraction(){
+//            Log.d("main",PREF_COLOR_SETTING[i]);
+            ListPreference prefFraction = (ListPreference)findPreference(PREF_TIME_SETTING);
             prefFraction.setSummary(prefFraction.getEntry());
-
         }
-
-
     }
 }
