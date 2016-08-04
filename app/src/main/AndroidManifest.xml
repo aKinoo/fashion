@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -41,6 +42,12 @@
         <!-- main設定画面を追加-->
         <activity
             android:name=".SettingPrefActivityMain"
+            android:label="設定"
+            android:screenOrientation="landscape">
+        </activity>
+        <!-- fashoncalender設定画面を追加-->
+        <activity
+            android:name=".FashionCalender"
             android:label="設定"
             android:screenOrientation="landscape">
         </activity>

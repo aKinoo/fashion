@@ -1,15 +1,18 @@
 package com.example.admin.fashion;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.AsyncTask;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -19,16 +22,9 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
     ImageLoader mImageLoader;
     TextView mMinCelsius0;
     TextView mMaxCelsius0;
+    //乗換案内用
+    private Spinner nSpinner;
+    private String spinnerItems[] = {"1限", "2限", "3限", "4限","5限"};
+    private Traintime tt;
+    private TextView textView;
+
 
     private static final String TAG = "MainActivity";
 
@@ -48,12 +50,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setView();
+    }
+
+    private void setView(){
+        //設定から値を取得
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        String arrivalStr = pref.getString(SettingPrefActivityMain.PREF_TIME_SETTING,"10");
+        final int arrival = Integer.parseInt(arrivalStr);     //学校に何分前に到着するか デフォルト値10
+        final String commuteStr = pref.getString(SettingPrefActivityMain.PREF_TIME_SETTING_TO_SHINJYUKU,"5");
+        final int commute = Integer.parseInt(commuteStr);     //新宿までの所要時間　デフォルト値5
+
         mTitle = (TextView) findViewById(R.id.title);
         mDateLabel0 = (TextView) findViewById(R.id.dateLabel0);
         mTelop0 = (TextView) findViewById(R.id.telop0);
         mImage0 = (NetworkImageView) findViewById(R.id.image0);
         mMinCelsius0 = (TextView) findViewById(R.id.minCelsius0);
         mMaxCelsius0 = (TextView) findViewById(R.id.maxCelsius0);
+
+
+        final SharedPreferences infoPref = getSharedPreferences("info",MODE_PRIVATE);
+
+
 
         mImageLoader = MySingleton.getInstance(this).getImageLoader();
 
@@ -68,14 +86,19 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+                            //お天気情報の保存
+                            SharedPreferences.Editor e = infoPref.edit();
+
                             mTitle.setText(response.getString("title"));
 //                            13mDescription.setText(response.getJSONObject("description").getString("text"));
                             mDateLabel0.setText(response.getJSONArray("forecasts").getJSONObject(0).getString("dateLabel"));
-                            mTelop0.setText(response.getJSONArray("forecasts").getJSONObject(0).getString("telop"));
+                            String telopStr = response.getJSONArray("forecasts").getJSONObject(0).getString("telop");
+                            mTelop0.setText(telopStr);
+                            e.putString("telopInfo",telopStr);
                             String url0 = response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("image").getString("url");
                             mImage0.setImageUrl(url0, mImageLoader);
 
-
+                            int maxCelToday = 20;
                             if (!Objects.equals(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getString("min"), "null")) {
 //                                Log.d("main",response.getJSONArray("forecasts").getJSONObject(0).toString());
                                 mMinCelsius0.setText(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getJSONObject("min").getString("celsius") + "℃");
@@ -84,10 +107,14 @@ public class MainActivity extends AppCompatActivity {
                             }
                             if (!Objects.equals(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getString("max"), "null")) {
 //                                Log.d("main",response.getJSONArray("forecasts").getJSONObject(0).toString());
-                                mMaxCelsius0.setText(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getJSONObject("max").getString("celsius") + "℃ /");
+                                String celStr = response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getJSONObject("max").getString("celsius");
+                                mMaxCelsius0.setText(celStr + "℃ /");
+                                maxCelToday = Integer.parseInt(celStr);
                             } else {
                                 mMaxCelsius0.setText("-- /");
                             }
+                            e.putInt("infoCel",maxCelToday);
+                            e.commit();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -103,12 +130,54 @@ public class MainActivity extends AppCompatActivity {
         );
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
 
+
+
+
+        //乗換案内
+        tt = new Traintime();
+        nSpinner = (Spinner)findViewById(R.id.spinner1);
+        final TextView textView = (TextView) findViewById(R.id.text_view);
+        // ArrayAdapter
+        ArrayAdapter<String> adapter
+                = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerItems);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // spinner に adapter をセット
+        nSpinner.setAdapter(adapter);
+
+        // リスナーを登録
+        nSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            //アイテムが選択された時
+            public void onItemSelected(AdapterView<?> parent, View viw, int arg2, long arg3) {
+                Spinner spinner = (Spinner) parent;
+                String item = (String) spinner.getSelectedItem();
+
+                if (item.equals("1限")) {
+                    textView.setText(tt.text(1,arrival,commute));
+                } else if (item.equals("2限")) {
+                    textView.setText(tt.text(2,arrival,commute));
+                } else if (item.equals("3限")) {
+                    textView.setText(tt.text(3,arrival,commute));
+                }else if (item.equals("4限")) {
+                    textView.setText(tt.text(4,arrival,commute));
+                }else if (item.equals("5限")){
+                    textView.setText(tt.text(5,arrival,commute));
+                }else{
+                    textView.setText("出発時刻");
+                }
+            }
+
+            //アイテムが選択されなかった
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+
         //スワイプメニューからコーデ画面へ遷移
         Button drawer_button1 = (Button)findViewById(R.id.drawer_button1);
         drawer_button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                finish();
+//                finish();
                 Intent intent = new Intent(getApplication(),ShowFashion.class);
                 startActivity(intent);
             }
@@ -118,65 +187,36 @@ public class MainActivity extends AppCompatActivity {
         drawer_past_fashion.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                finish();
-                Intent intent = new Intent(getApplication(),PastFashion.class);
+//                finish();
+                Intent intent = new Intent(getApplication(),FashionCalender.class);
                 startActivity(intent);
             }
         });
-        View.OnClickListener button1ClickListener = new View.OnClickListener() {
-
-            public void onClick(View view) {
-                AsyncHttpRequest task = new AsyncHttpRequest();
-                task.execute();
-
-            }
-        };
-
-        findViewById(R.id.Buttom).setOnClickListener(button1ClickListener);
-    };
-
-    private void exec_post() {
-        HttpClient client = new DefaultHttpClient();
-        HttpPost post = new HttpPost("http://10.110.130.123/test.php");
-
-
-        String responseData = null;
-
-        try {
-
-            HttpResponse response = client.execute(post);
-            // 取得
-            HttpEntity httpEntity = response.getEntity();
-
-            Log.d("name", String.valueOf(EntityUtils.toString(httpEntity)));
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-
-
     }
-    public class AsyncHttpRequest extends AsyncTask<Uri.Builder, Void, String> {
 
-//        private Activity mainActivity;
-//
-//        public AsyncHttpRequest(Activity activity) {
-//
-//            // 呼び出し元のアクティビティ
-//            this.mainActivity = activity;
-//        }
+    @Override
+    public void onResume(){
+        super.onResume();
+        setView();
+    }
 
-        // このメソッドは必ずオーバーライドする必要があるよ
-        // ここが非同期で処理される部分みたいたぶん。
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.main,menu);
+        return true;
+    }
 
-        protected String doInBackground(Uri.Builder... builder) {
-            exec_post();
-        return "x"; };
-
-
-        // このメソッドは非同期処理の終わった後に呼び出されます
-
-        protected void onPostExecute(String result) {
-            Log.d("name", "finish");
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()){
+            case R.id.action_settings:
+                //設定ボタン処理
+                Intent intent = new Intent(MainActivity.this, SettingPrefActivityMain.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
         }
+        return  super.onOptionsItemSelected(item);
     }
 }

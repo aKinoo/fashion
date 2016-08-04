@@ -1,5 +1,8 @@
 package com.example.admin.fashion;
 
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -15,6 +18,9 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
@@ -33,50 +39,94 @@ public class FashionCalender extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_fashioncalender);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        //imageを取得
+//        Activity view=;
+        ImageView image = (ImageView)findViewById(R.id.firstImage);
+        //画像取得スレッド起動
+//        ImageGetTask task = new ImageGetTask(image);
+//        task.execute("http://10.110.130.123/img/hert.jpg");
+//        assert viewPager != null;
         viewPager.setAdapter(new PagerAdapter() {
 
             @Override
-            public ImageView instantiateItem(ViewGroup container, int position) {
-                ImageView imageView = new ImageView(FashionCalender.this);
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                imageView.setImageDrawable(getDrawable(drawables[position]));
-                container.addView(imageView, new ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT));
-                return imageView;
-            }
-
-            @Override
             public void destroyItem(ViewGroup container, int position, Object object) {
-                if (object instanceof ImageView) {
-                    ImageView imageView = (ImageView) object;
-                    imageView.setImageDrawable(null);
-                    container.removeView(imageView);
-                }
-                super.destroyItem(container, position, object);
+                // コンテナから View を削除
+                container.removeView((View) object);
             }
 
             @Override
             public int getCount() {
-                return drawables.length;
+                // リストのアイテム数を返す
+             return 30;
             }
+
 
             @Override
             public boolean isViewFromObject(View view, Object object) {
-                return view == object;
+                // Object 内に View が存在するか判定する
+                return view == (ImageView) object;
             }
-        });
+
+            @Override
+            public ImageView instantiateItem(ViewGroup container, int position) {
+                try {
+                ImageView imageView = new ImageView(FashionCalender.this);
+                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+
+//                imageView.setImageDrawable(getDrawable(drawables[position]));
+//                container.addView(imageView, new ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT));
+//                return imageView;
+
+                 Log.d("url","before get url");
+                URL imageUrl = new URL("http://10.110.130.123/img/hert.jpg");
+                    HttpURLConnection connection = (HttpURLConnection) imageUrl.openConnection();
+                    connection.setDoInput(true);
+                    connection.connect();
+                    InputStream imageIs = connection.getInputStream();
+//                InputStream imageIs = imageUrl.openStream();
+                    Log.d("url","agter get url");
+                Bitmap bmp = BitmapFactory.decodeStream(imageIs);
+
+//                        return image;
+//                        ArrayAdapter<Image> arrayAdapter = new ArrayAdapter<>(
+////                                getActivity(), android.R.layout.fashioncal, list
+//                                getActivity(), android.R.layout.list
+//                        );
+//                        // ListView にアダプタをセット
+//                        ListView listView = (ListView)getActivity().findViewById(R.id.listView);
+//                        listView.setAdapter(arrayAdapter);
+//                        }catch (MalformedURLException e){
+//                        return null;
+                // ListView 用のアダプタを作成
 
 
-        View.OnClickListener button1ClickListener = new View.OnClickListener() {
-
-            public void onClick(View view) {
-                exec_post();
+//                 取得した画像をImageViewに設定します。
+                imageView.setImageBitmap(bmp);
+                container.addView(imageView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                return imageView;
+                } catch (IOException e) {
+                    Log.d("error","error");
+                    e.printStackTrace();
+                    return null;
+                }
             }
-        };
-        findViewById(R.id.Buttom).setOnClickListener(button1ClickListener);
+
+            });
+
+
+
+
+
+//        View.OnClickListener button1ClickListener = new View.OnClickListener() {
+//
+//            public void onClick(View view) {
+//                exec_post();
+//            }
+//        };
+//        findViewById(R.id.Buttom).setOnClickListener(button1ClickListener);
     };
     private void exec_post() {
         HttpClient client = new DefaultHttpClient();
