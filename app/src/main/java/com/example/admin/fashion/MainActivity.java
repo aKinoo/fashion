@@ -609,18 +609,16 @@ public class MainActivity extends AppCompatActivity {
                     // the start date.
                     start = event.getStart().getDate();
                     String[] dates = String.valueOf(start).split("-");
-                    date = TextUtils.join(" / ", dates);
-                    date = date+",  終日";
+                    date = dates[1] + " / " + dates[2] + ", 終日    ";
 
                 } else {
                     String[] datetime = String.valueOf(start).split("T");
                     String[] dates = datetime[0].split("-");
-                    date = TextUtils.join(" / ", dates);
                     String[] times = datetime[1].split(":");
-                    date = date + ", "+ times[0] + ":" + times[1];
+                    date = dates[1] + " / " + dates[2] + ", "+ times[0] + " : " + times[1];
                 }
                 eventStrings.add(
-                        String.format("%s 「%s」",date ,event.getSummary()));
+                        String.format("   %s 「%s」",date ,event.getSummary()));
             }
             Log.d("getDataFromAPI", TextUtils.join(", ", eventStrings));
             return eventStrings;
