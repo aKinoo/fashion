@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!-- v4 変えないで！　-->
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
 
     <!-- mainレイアウト -->
     <LinearLayout
@@ -20,15 +21,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusable="true">
-            ​<ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:src="@drawable/bigfig"
-            android:id="@+id/firstImage" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bigfig"
+                android:id="@+id/firstImage" />
 
         </android.support.v4.view.ViewPager>
-        ​
+
 
     </LinearLayout>
 

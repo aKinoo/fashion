@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         final int arrival = Integer.parseInt(arrivalStr);     //学校に何分前に到着するか デフォルト値10
         final String commuteStr = pref.getString(SettingPrefActivityMain.PREF_TIME_SETTING_TO_SHINJYUKU,"5");
         final int commute = Integer.parseInt(commuteStr);     //新宿までの所要時間　デフォルト値5
-  
+
         mTitle = (TextView) findViewById(R.id.title);
         mDateLabel0 = (TextView) findViewById(R.id.dateLabel0);
         mTelop0 = (TextView) findViewById(R.id.telop0);
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
 //                finish();
-                Intent intent = new Intent(getApplication(),PastFashion.class);
+                Intent intent = new Intent(getApplication(),FashionCalender.class);
                 startActivity(intent);
             }
         });

@@ -7,9 +7,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
-    <!-- カメラの使用を許可 -->
-    <user-permission android:name="android.permission.CAMERA"></user-permission>
-    <user-feature android:name="android.hardware.camera2"></user-feature>
 
     <application
         android:allowBackup="true"
@@ -45,6 +42,12 @@
         <!-- main設定画面を追加-->
         <activity
             android:name=".SettingPrefActivityMain"
+            android:label="設定"
+            android:screenOrientation="landscape">
+        </activity>
+        <!-- fashoncalender設定画面を追加-->
+        <activity
+            android:name=".FashionCalender"
             android:label="設定"
             android:screenOrientation="landscape">
         </activity>
