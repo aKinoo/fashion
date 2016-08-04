@@ -24,22 +24,27 @@
             tools:context=".MainActivity">
 
 
-
+<!--左半分-->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="vertical">
+<!--上半分-->
 
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="今日の予定"
+                        android:text="この後の予定は...？"
                         android:textSize="40sp"
                         android:id="@+id/planTitle" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -47,11 +52,14 @@
                         android:textSize="20sp"
                         android:id="@+id/plans"
                         android:textIsSelectable="false" />
-                    <!--<Button
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:text="Account"
-                        android:id="@+id/calendarB" />-->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" >
+
                 </LinearLayout>
             </LinearLayout>
 
@@ -204,7 +212,9 @@
                 </LinearLayout>
 
             </LinearLayout>
+
         </LinearLayout>
+
     </RelativeLayout>
 
 
