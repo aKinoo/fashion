@@ -73,20 +73,23 @@ public class FashionCalender extends AppCompatActivity {
             @Override
             public ImageView instantiateItem(ViewGroup container, int position) {
                 try {
-                ImageView imageView = new ImageView(FashionCalender.this);
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                    ImageView imageView = new ImageView(FashionCalender.this);
+                    imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
 //                imageView.setImageDrawable(getDrawable(drawables[position]));
 //                container.addView(imageView, new ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT));
 //                return imageView;
 
-                 Log.d("url","before get url");
-                URL imageUrl = new URL("http://10.110.130.123/img/hert.jpg");
-                    HttpURLConnection connection = (HttpURLConnection) imageUrl.openConnection();
-                    connection.setDoInput(true);
-                    connection.connect();
-                    InputStream imageIs = connection.getInputStream();
-//                InputStream imageIs = imageUrl.openStream();
+
+                    Log.d("url","before get url");
+                    ImageGetTask task = new ImageGetTask(imageView);
+                    task.execute("http://10.110.130.123/img/hert.jpg");
+                    URL imageUrl = new URL("http://10.110.130.123/img/hert.jpg");
+//                    HttpURLConnection connection = (HttpURLConnection) imageUrl.openConnection();
+//                    connection.setDoInput(true);
+//                    connection.connect();
+//                    InputStream imageIs = connection.getInputStream();
+                InputStream imageIs = imageUrl.openStream();
                     Log.d("url","agter get url");
                 Bitmap bmp = BitmapFactory.decodeStream(imageIs);
 
@@ -128,6 +131,10 @@ public class FashionCalender extends AppCompatActivity {
 //        };
 //        findViewById(R.id.Buttom).setOnClickListener(button1ClickListener);
     };
+
+
+
+
     private void exec_post() {
         HttpClient client = new DefaultHttpClient();
         HttpPost post = new HttpPost("http://10.110.130.123/test.php");
