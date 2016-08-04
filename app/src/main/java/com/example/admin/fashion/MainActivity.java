@@ -68,6 +68,11 @@ public class MainActivity extends AppCompatActivity {
         mMinCelsius0 = (TextView) findViewById(R.id.minCelsius0);
         mMaxCelsius0 = (TextView) findViewById(R.id.maxCelsius0);
 
+
+        final SharedPreferences infoPref = getSharedPreferences("info",MODE_PRIVATE);
+
+
+
         mImageLoader = MySingleton.getInstance(this).getImageLoader();
 
         String id = "130010";
@@ -81,14 +86,19 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+                            //お天気情報の保存
+                            SharedPreferences.Editor e = infoPref.edit();
+
                             mTitle.setText(response.getString("title"));
 //                            13mDescription.setText(response.getJSONObject("description").getString("text"));
                             mDateLabel0.setText(response.getJSONArray("forecasts").getJSONObject(0).getString("dateLabel"));
-                            mTelop0.setText(response.getJSONArray("forecasts").getJSONObject(0).getString("telop"));
+                            String telopStr = response.getJSONArray("forecasts").getJSONObject(0).getString("telop");
+                            mTelop0.setText(telopStr);
+                            e.putString("telopInfo",telopStr);
                             String url0 = response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("image").getString("url");
                             mImage0.setImageUrl(url0, mImageLoader);
 
-
+                            int maxCelToday = 20;
                             if (!Objects.equals(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getString("min"), "null")) {
 //                                Log.d("main",response.getJSONArray("forecasts").getJSONObject(0).toString());
                                 mMinCelsius0.setText(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getJSONObject("min").getString("celsius") + "℃");
@@ -97,10 +107,14 @@ public class MainActivity extends AppCompatActivity {
                             }
                             if (!Objects.equals(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getString("max"), "null")) {
 //                                Log.d("main",response.getJSONArray("forecasts").getJSONObject(0).toString());
-                                mMaxCelsius0.setText(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getJSONObject("max").getString("celsius") + "℃ /");
+                                String celStr = response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getJSONObject("max").getString("celsius");
+                                mMaxCelsius0.setText(celStr + "℃ /");
+                                maxCelToday = Integer.parseInt(celStr);
                             } else {
                                 mMaxCelsius0.setText("-- /");
                             }
+                            e.putInt("infoCel",maxCelToday);
+                            e.commit();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -115,6 +129,9 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
+
+
+
 
         //乗換案内
         tt = new Traintime();

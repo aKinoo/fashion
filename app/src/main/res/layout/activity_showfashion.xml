@@ -14,86 +14,130 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_weight="1"
-            android:gravity="center"
             >
-            <!--　トップス色選択 -->
+            <!-- ボタン用のレイアウト　-->
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                >
-                <Button
-                android:id="@+id/top_color1"
-                android:layout_width="@dimen/color_button_size"
-                android:layout_height="@dimen/color_button_size"
-                android:layout_marginTop="@dimen/color_button_margin_top"
-                android:text="c1"/>
-                <Button
-                    android:id="@+id/top_color2"
-                    android:layout_width="@dimen/color_button_size"
-                    android:layout_height="@dimen/color_button_size"
-                    android:layout_marginTop="@dimen/color_button_margin_top"
-                    android:text="c2"/>
-                <Button
-                    android:id="@+id/top_color3"
-                    android:layout_width="@dimen/color_button_size"
-                    android:layout_height="@dimen/color_button_size"
-                    android:layout_marginTop="@dimen/color_button_margin_top"
-                    android:text="c3"/>
-                <Button
-                    android:id="@+id/top_color4"
-                    android:layout_width="@dimen/color_button_size"
-                    android:layout_height="@dimen/color_button_size"
-                    android:layout_marginTop="@dimen/color_button_margin_top"
-                    android:text="c4"/>
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <!--　トップス色選択 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
+                    <Button
+                        android:id="@+id/top_color1"
+                        android:layout_width="@dimen/color_button_size"
+                        android:layout_height="@dimen/color_button_size"
+                        android:layout_marginTop="@dimen/color_button_margin_top"
+                        android:text="c1"/>
+                    <Button
+                        android:id="@+id/top_color2"
+                        android:layout_width="@dimen/color_button_size"
+                        android:layout_height="@dimen/color_button_size"
+                        android:layout_marginTop="@dimen/color_button_margin_top"
+                        android:text="c2"/>
+                    <Button
+                        android:id="@+id/top_color3"
+                        android:layout_width="@dimen/color_button_size"
+                        android:layout_height="@dimen/color_button_size"
+                        android:layout_marginTop="@dimen/color_button_margin_top"
+                        android:text="c3"/>
+                    <Button
+                        android:id="@+id/top_color4"
+                        android:layout_width="@dimen/color_button_size"
+                        android:layout_height="@dimen/color_button_size"
+                        android:layout_marginTop="@dimen/color_button_margin_top"
+                        android:text="c4"/>
+                </LinearLayout>
+                <!-- トップス柄選択　-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20dp"
+                    >
+                    <ImageButton
+                        android:id="@+id/top_design0"
+                        android:layout_width="@dimen/color_button_size"
+                        android:layout_height="@dimen/color_button_size"
+                        android:layout_marginTop="@dimen/color_button_margin_top"
+                        android:background="#696969"
+                        />
+                    <ImageButton
+                        android:id="@+id/top_design1"
+                        android:layout_width="@dimen/color_button_size"
+                        android:layout_height="@dimen/color_button_size"
+                        android:layout_marginTop="@dimen/color_button_margin_top"
+                        android:background="#696969"
+                        android:src="@drawable/lblack"
+                        />
+                    <ImageButton
+                        android:id="@+id/top_design2"
+                        android:layout_width="@dimen/color_button_size"
+                        android:layout_height="@dimen/color_button_size"
+                        android:layout_marginTop="@dimen/color_button_margin_top"
+                        android:background="#696969"
+                        android:src="@drawable/pinckflower"/>
+                    <ImageButton
+                        android:id="@+id/top_design3"
+                        android:layout_width="@dimen/color_button_size"
+                        android:layout_height="@dimen/color_button_size"
+                        android:layout_marginTop="@dimen/color_button_margin_top"
+                        android:background="#696969"
+                        android:src="@drawable/sblack"/>
+                    <ImageButton
+                        android:id="@+id/top_design4"
+                        android:layout_width="@dimen/color_button_size"
+                        android:layout_height="@dimen/color_button_size"
+                        android:layout_marginTop="@dimen/color_button_margin_top"
+                        android:background="#696969"
+                        android:src="@drawable/swhite"/>
+                </LinearLayout>
             </LinearLayout>
-            <!-- トップス柄選択　-->
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="vertical"
-                android:layout_marginLeft="20dp"
-                >
-                <ImageButton
-                    android:id="@+id/top_design0"
-                    android:layout_width="@dimen/color_button_size"
-                    android:layout_height="@dimen/color_button_size"
-                    android:layout_marginTop="@dimen/color_button_margin_top"
-                    android:background="#696969"
-                    />
-                <ImageButton
-                    android:id="@+id/top_design1"
-                    android:layout_width="@dimen/color_button_size"
-                    android:layout_height="@dimen/color_button_size"
-                    android:layout_marginTop="@dimen/color_button_margin_top"
-                    android:background="#696969"
-                    android:src="@drawable/lblack"
-                    />
-                <ImageButton
-                    android:id="@+id/top_design2"
-                    android:layout_width="@dimen/color_button_size"
-                    android:layout_height="@dimen/color_button_size"
-                    android:layout_marginTop="@dimen/color_button_margin_top"
-                    android:background="#696969"
-                    android:src="@drawable/pinckflower"/>
-                <ImageButton
-                    android:id="@+id/top_design3"
-                    android:layout_width="@dimen/color_button_size"
-                    android:layout_height="@dimen/color_button_size"
-                    android:layout_marginTop="@dimen/color_button_margin_top"
-                    android:background="#696969"
-                    android:src="@drawable/sblack"/>
-                <ImageButton
-                    android:id="@+id/top_design4"
-                    android:layout_width="@dimen/color_button_size"
-                    android:layout_height="@dimen/color_button_size"
-                    android:layout_marginTop="@dimen/color_button_margin_top"
-                    android:background="#696969"
-                    android:src="@drawable/swhite"/>
+                android:background="#FFFfe0"
+                android:layout_marginLeft="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="今日の予定"
+                    android:textColor = "@color/HoseiOrange"
+                    android:textSize="30sp"/>
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioGroup"
+                    >
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="学校"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="デート"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="友達と遊ぶ"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="バイト"/>
+                </RadioGroup>
             </LinearLayout>
+
         </LinearLayout>
+
 
         <!-- 中心のファッション表示 -->
         <LinearLayout
@@ -110,8 +154,7 @@
                 <com.example.admin.fashion.CanvasView
                     android:id="@+id/canvas_top"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     />
@@ -159,6 +202,7 @@
             android:orientation="horizontal"
             android:layout_weight="1"
             android:gravity="center"
+            android:layout_marginBottom="@dimen/color_button_margin_top"
             >
             <LinearLayout
                 android:layout_width="wrap_content"

@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 
 
 public class ShowFashion extends AppCompatActivity {
@@ -27,7 +28,6 @@ public class ShowFashion extends AppCompatActivity {
         setContentView(R.layout.activity_showfashion);  //レイアウトファイル　acitivity_showfashion.xml
 
         setView();
-
     }
 
     @Override
@@ -36,11 +36,49 @@ public class ShowFashion extends AppCompatActivity {
         setView();
     }
 
+    public void setImage(ImageView top,ImageView bottom){
+        int bottomsId = bottoms();
+        int topsId = tops();
+        if(bottomsId == R.drawable.dress_bottom){
+            bottom.setImageResource(R.drawable.dress_bottom);
+            top.setImageResource(R.drawable.dress_top);
+        }else{
+            bottom.setImageResource(bottoms());
+            top.setImageResource(tops());
+        }
+
+    }
+
     public void setView(){
+
+        //天気情報の取得
+        SharedPreferences infoPref = getSharedPreferences("info",MODE_PRIVATE);
+        String telop = infoPref.getString("telopInfo","");
+        int celsius = infoPref.getInt("infoCel",20);
+        setData(telop,celsius);
+//        Log.d("telop",telop);
+//        Log.d("celsius",celsius + "");
+
+        final CanvasView canvas_top = (CanvasView)this.findViewById(R.id.canvas_top);
+        final CanvasView canvas_bottom = (CanvasView)this.findViewById(R.id.canvas_bottom);
+
         final ImageView image_top = (ImageView)findViewById(R.id.image_top);
         image_top.setImageResource(tops());
         final ImageView image_bottom = (ImageView)findViewById(R.id.image_bottom);
         image_bottom.setImageResource(bottoms());
+
+        RadioGroup radio = (RadioGroup)findViewById(R.id.radioGroup);
+        radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(-1 != checkedId){
+//                    Log.d("radiobutton",checkedId+"");
+                    setPlan(checkedId);
+                    setImage(image_top,image_bottom);
+                }
+            }
+        });
+
         //柄表示
         final ImageView design_top = (ImageView)findViewById(R.id.design_top);
         final ImageView design_bottom = (ImageView)findViewById(R.id.design_bottom);
@@ -131,8 +169,7 @@ public class ShowFashion extends AppCompatActivity {
                 design_bottom.setImageResource(R.drawable.brown);
             }
         });
-        final CanvasView canvas_top = (CanvasView)this.findViewById(R.id.canvas_top);
-        final CanvasView canvas_bottom = (CanvasView)this.findViewById(R.id.canvas_bottom);
+
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ShowFashion.this);
 
         int[][] color = canvas_top.getColor();
@@ -248,12 +285,12 @@ public class ShowFashion extends AppCompatActivity {
     }
 
 
+    //設定メニュー
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -268,24 +305,33 @@ public class ShowFashion extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    String plan;
+    int plan = 1;
     String telop;
     int MaxCelsius;
 
+    private  void setData(String tel, int cel){
+        telop = tel;
+        MaxCelsius = cel;
+    }
+
+    private void setPlan(int p){
+        plan = p;
+    }
+
     private int bottoms() {
-        if (plan == "school") {
+        if (plan == 1) {    //学校
             return schoolBottom();
-        } else if (plan == "date") {
-            return R.drawable.dress;
-        } else if (plan == "friends") {
+        } else if (plan == 2) {    //デート
+            return R.drawable.dress_bottom;
+        } else if (plan == 3) { //友達
             return friendsBottom();
-        } else { //job
+        } else { //バイト
             return R.drawable.longpants;
         }
     }
 
     int friendsBottom() {
-        if(telop=="晴れ"||telop=="晴のち曇"||telop=="晴時々曇"||telop=="曇り") {
+        if(telop.equals("晴れ")||telop.equals("晴のち曇")||telop.equals("晴時々曇")||telop.equals("曇り")) {
             return R.drawable.longskirt;
         }else {//rain
             return R.drawable.shortskirt;
@@ -294,23 +340,23 @@ public class ShowFashion extends AppCompatActivity {
 
     int schoolBottom() {
         if(MaxCelsius<15) {
-            if(telop=="晴れ"||telop=="晴のち曇"||telop=="晴時々曇") {
+            if(telop.equals("晴れ")||telop.equals("晴のち曇")||telop.equals("晴時々曇")) {
                 return R.drawable.longskirt;
-            }else if(telop=="曇り") {
+            }else if(telop.equals("曇り")) {
                 return  R.drawable.longpants;
             } else {//rain
                 return R.drawable.harfpants;
             }
         }else if(15<= MaxCelsius && MaxCelsius < 25) {
-            if(telop=="晴れ"||telop=="晴のち曇"||telop=="晴時々曇") {
+            if(telop.equals("晴れ")||telop.equals("晴のち曇")||telop.equals("晴時々曇")) {
                 return  R.drawable.shortskirt;
-            }else if(telop=="曇り") {
+            }else if(telop.equals("曇り")) {
                 return  R.drawable.longskirt;
             } else { //rain
                 return  R.drawable.shortskirt;
             }
         }else{
-            if(telop=="晴れ"||telop=="晴のち曇"||telop=="晴時々曇") {
+            if(telop.equals("晴れ")||telop.equals("晴のち曇")||telop.equals("晴時々曇")) {
                 return  R.drawable.shortskirt;
             }else { //clloud,rain
                 return  R.drawable.shortskirt;
@@ -320,23 +366,27 @@ public class ShowFashion extends AppCompatActivity {
 
     private int tops() {
         if(MaxCelsius<15) {
-            if(telop=="晴れ"||telop=="晴のち曇"||telop=="晴時々曇") {
+            if(telop.equals("晴れ")||telop.equals("晴のち曇")||telop.equals("晴時々曇")) {
                 return R.drawable.cardigan;
             } else { //rain, cloud
                 return R.drawable.janper;
             }
         }else if(15<= MaxCelsius && MaxCelsius < 25) {
-            if(telop=="晴れ"||telop=="晴のち曇"||telop=="晴時々曇"||telop=="曇り") {
+            if(telop.equals("晴れ")||telop.equals("晴のち曇")||telop.equals("晴時々曇")||telop.equals("曇り")) {
                 return R.drawable.longshirt;
             } else { //rain
                 return R.drawable.cardigan;
             }
         }else{
-            if(telop=="晴れ"||telop=="晴のち曇"||telop=="晴時々曇") {
+//            Log.d("telop",telop);
+            if(telop.equals("晴れ")||telop.equals("晴のち曇")||telop.equals("晴時々曇")) {
+//                Log.d("main","test2");
                 return R.drawable.tanktop;
-            }else if(telop=="曇り") {
+            }else if(telop.equals("曇り")) {
+//                Log.d("main","test3");
                 return R.drawable.fshortshirt;
             }else { //rain
+                Log.d("main","test4");
                 return R.drawable.shortshirt;
             }
         }
