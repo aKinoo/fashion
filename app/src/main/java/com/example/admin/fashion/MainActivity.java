@@ -470,7 +470,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                finish();
-                Intent intent = new Intent(getApplication(), PastFashion.class);
+                Intent intent = new Intent(getApplication(), FashionCalender.class);
                 startActivity(intent);
             }
         });
