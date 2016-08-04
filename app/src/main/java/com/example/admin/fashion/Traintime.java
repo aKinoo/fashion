@@ -9,14 +9,9 @@ public class Traintime {
 
     //http://www.jreast-timetable.jp/1608/timetable/tt0866/0866060.html
     //中央線快速時刻表（新宿から八王子方面）
-    //新宿→東小金井駅の所要時間
-    int traintime = 21;
-    //東小金井駅→学校までの所要時間
-    int walktime = 15;
-    //何分前に学校に着くか
-    int waittime = 15;
 
-    int toSinjuku = 40;
+
+
 
     /*1限の電車時間候補
     int one[] = {24,26,28,32,34,36,38,40,42,44};
@@ -29,7 +24,7 @@ public class Traintime {
 
     }
 
-    public String text(int input){
+    public String text(int input,int waittime,int toSinjuku){
         //inputは○限目をとってくる
         switch (input){
             case 1:
