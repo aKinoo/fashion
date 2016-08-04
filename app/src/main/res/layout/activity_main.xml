@@ -23,15 +23,6 @@
             android:orientation="horizontal"
             tools:context=".MainActivity">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:text="コーディネート画像を張る部分"
-                android:layout_weight="1"
-                android:textColor="@android:color/white"
-                android:background="@android:color/holo_blue_dark"
-                android:padding="30dp"/>
-
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
@@ -49,6 +40,12 @@
                     android:id="@+id/title"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true" />
+
+                <Button
+                    android:layout_width="111dp"
+                    android:layout_height="124dp"
+                    android:id="@+id/Buttom"
+                    android:layout_below="@+id/title"/>
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -75,6 +72,15 @@
                         android:text="telop0"
                         android:id="@+id/telop0" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="コーディネート画像を張る部分"
+                        android:layout_weight="1"
+                        android:textColor="@android:color/white"
+                        android:background="@android:color/holo_blue_dark"
+                        android:padding="30dp"/>
+
                     <com.android.volley.toolbox.NetworkImageView
                         android:layout_width = "50dp"
                         android:layout_height = "31dp"
@@ -95,6 +101,7 @@
                         android:text="minCelsius0"
                         android:id="@+id/minCelsius0"
                         android:textColor="@android:color/holo_blue_dark" />
+
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -126,8 +133,9 @@
 
         <FrameLayout
             android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
          />
 
     </LinearLayout>

@@ -4,9 +4,17 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.IOException;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
@@ -27,7 +35,7 @@ public class FashionCalender extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
         viewPager.setAdapter(new PagerAdapter() {
 
@@ -60,7 +68,34 @@ public class FashionCalender extends AppCompatActivity {
                 return view == object;
             }
         });
-    }
-}
+
+
+        View.OnClickListener button1ClickListener = new View.OnClickListener() {
+
+            public void onClick(View view) {
+                exec_post();
+            }
+        };
+        findViewById(R.id.Buttom).setOnClickListener(button1ClickListener);
+    };
+    private void exec_post() {
+        HttpClient client = new DefaultHttpClient();
+        HttpPost post = new HttpPost("http://10.110.130.123/test.php");
+
+
+        String responseData = null;
+
+        try {
+
+            HttpResponse response = client.execute(post);
+            // 取得
+            Log.d("name", String.valueOf(response));
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }}
+
 
 

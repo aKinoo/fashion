@@ -35,4 +35,5 @@ dependencies {
     compile('com.google.apis:google-api-services-calendar:v3-rev201-1.22.0') {
         exclude group: 'org.apache.httpcomponents'
     }
+    compile 'com.google.android.gms:play-services-appindexing:9.0.2'
 }

@@ -1,6 +1,9 @@
 package com.example.admin.fashion;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,9 +19,16 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -113,6 +123,60 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        View.OnClickListener button1ClickListener = new View.OnClickListener() {
 
+            public void onClick(View view) {
+                AsyncHttpRequest task = new AsyncHttpRequest();
+                task.execute();
+
+            }
+        };
+
+        findViewById(R.id.Buttom).setOnClickListener(button1ClickListener);
+    };
+
+    private void exec_post() {
+        HttpClient client = new DefaultHttpClient();
+        HttpPost post = new HttpPost("http://10.110.130.123/test.php");
+
+
+        String responseData = null;
+
+        try {
+
+            HttpResponse response = client.execute(post);
+            // 取得
+            HttpEntity httpEntity = response.getEntity();
+
+            Log.d("name", String.valueOf(EntityUtils.toString(httpEntity)));
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public class AsyncHttpRequest extends AsyncTask<Uri.Builder, Void, String> {
+
+//        private Activity mainActivity;
+//
+//        public AsyncHttpRequest(Activity activity) {
+//
+//            // 呼び出し元のアクティビティ
+//            this.mainActivity = activity;
+//        }
+
+        // このメソッドは必ずオーバーライドする必要があるよ
+        // ここが非同期で処理される部分みたいたぶん。
+
+        protected String doInBackground(Uri.Builder... builder) {
+            exec_post();
+        return "x"; };
+
+
+        // このメソッドは非同期処理の終わった後に呼び出されます
+
+        protected void onPostExecute(String result) {
+            Log.d("name", "finish");
+        }
     }
 }
