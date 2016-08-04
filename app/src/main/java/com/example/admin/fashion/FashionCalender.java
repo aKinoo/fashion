@@ -36,6 +36,14 @@ public class FashionCalender extends AppCompatActivity {
             R.drawable.skirt
     };
 
+    String[] stackURL = {
+            "http://10.110.130.123/img/IMG_20160804_194152.jpg",
+            "http://10.110.130.123/img/IMG_20160804_194130.jpg",
+            "http://10.110.130.123/img/IMG_20160804_194219.jpg"
+    };
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +68,7 @@ public class FashionCalender extends AppCompatActivity {
             @Override
             public int getCount() {
                 // リストのアイテム数を返す
-             return 30;
+             return 3;
             }
 
 
@@ -105,7 +113,8 @@ public class FashionCalender extends AppCompatActivity {
 ////                 取得した画像をImageViewに設定します。
 //                imageView.setImageBitmap(bmp);
                 ImageGetTask task = new ImageGetTask(imageView);
-                task.execute("http://10.110.130.123/img/hert.jpg");
+//                task.execute("http://10.110.130.123/img/hert.jpg");
+                task.execute(stackURL[position]);
                 container.addView(imageView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 return imageView;
             }

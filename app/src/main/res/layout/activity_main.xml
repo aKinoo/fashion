@@ -29,15 +29,6 @@
                 android:id="@+id/imageButton"
                 android:layout_weight="1" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:text="コーディネート画像"
-                android:layout_weight="1"
-                android:textColor="@android:color/white"
-                android:background="@android:color/holo_blue_dark"
-                android:padding="30dp"/>
-
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
