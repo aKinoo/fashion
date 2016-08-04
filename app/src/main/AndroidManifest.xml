@@ -32,6 +32,18 @@
             android:label="@string/drawer_past_fashion"
             android:screenOrientation="landscape">
         </activity>
+        <!-- 設定画面を追加-->
+        <activity
+            android:name=".SettingPrefActivity"
+            android:label="設定"
+            android:screenOrientation="landscape">
+        </activity>
+        <!-- main設定画面を追加-->
+        <activity
+            android:name=".SettingPrefActivityMain"
+            android:label="設定"
+            android:screenOrientation="landscape">
+        </activity>
 
         <!--meta情報を追加-->
         <meta-data

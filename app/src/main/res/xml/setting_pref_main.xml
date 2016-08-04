@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:key="time_setting"
+        android:title="到着時間"
+        android:dialogTitle="@string/title_time_setting"
+        android:entries="@array/list_time"
+        android:entryValues="@array/list_time_val"
+        android:defaultValue="10"
+        />
+    <ListPreference
+        android:key="time_setting_to_shinjyuku"
+        android:title="新宿までの所要時間"
+        android:dialogTitle="@string/title_time_setting_to_shinhyuku"
+        android:entries="@array/list_time2"
+        android:entryValues="@array/list_time_val2"
+        android:defaultValue="5"
+        />
+</PreferenceScreen>
