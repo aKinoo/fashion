@@ -255,6 +255,7 @@ public class ShowFashion extends AppCompatActivity {
                 canvas_bottom.showCanvas(bottom_color[3]);
             }
         });
+
         //スワイプメニューからトップ画面へ遷移
         Button drawer_button_top = (Button)findViewById(R.id.drawer_button_top);
         drawer_button_top.setOnClickListener(new View.OnClickListener(){
@@ -272,7 +273,7 @@ public class ShowFashion extends AppCompatActivity {
             @Override
             public void onClick(View v){
 //                finish();
-                Intent intent = new Intent(getApplication(),PastFashion.class);
+                Intent intent = new Intent(getApplication(),FashionCalender.class);
                 startActivity(intent);
             }
         });

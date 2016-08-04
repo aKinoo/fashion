@@ -7,6 +7,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
+    <!-- カメラアクセスの許可　-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+
 
     <application
         android:allowBackup="true"
@@ -48,7 +53,12 @@
         <!-- fashoncalender設定画面を追加-->
         <activity
             android:name=".FashionCalender"
-            android:label="設定"
+            android:label="過去のコーデ一覧"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".SimpleCameraActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
             android:screenOrientation="landscape">
         </activity>
 
