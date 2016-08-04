@@ -601,15 +601,26 @@ public class MainActivity extends AppCompatActivity {
                     .execute();
             List<Event> items = events.getItems();
 
+            String date;
             for (Event event : items) {
                 DateTime start = event.getStart().getDateTime();
                 if (start == null) {
                     // All-day events don't have start times, so just use
                     // the start date.
                     start = event.getStart().getDate();
+                    String[] dates = String.valueOf(start).split("-");
+                    date = TextUtils.join(" / ", dates);
+                    date = date+",  終日";
+
+                } else {
+                    String[] datetime = String.valueOf(start).split("T");
+                    String[] dates = datetime[0].split("-");
+                    date = TextUtils.join(" / ", dates);
+                    String[] times = datetime[1].split(":");
+                    date = date + ", "+ times[0] + ":" + times[1];
                 }
                 eventStrings.add(
-                        String.format("%s (%s)", event.getSummary(), start));
+                        String.format("%s 「%s」",date ,event.getSummary()));
             }
             Log.d("getDataFromAPI", TextUtils.join(", ", eventStrings));
             return eventStrings;

@@ -39,17 +39,18 @@
                     android:layout_weight="1">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="この後の予定は...？"
-                        android:textSize="40sp"
-                        android:id="@+id/planTitle" />
+                        android:textSize="35sp"
+                        android:id="@+id/planTitle"
+                        android:layout_gravity="center_horizontal" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="予定"
-                        android:textSize="20sp"
+                        android:textSize="25sp"
                         android:id="@+id/plans"
                         android:textIsSelectable="false" />
                 </LinearLayout>
