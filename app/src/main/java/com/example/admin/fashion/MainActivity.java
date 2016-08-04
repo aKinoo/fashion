@@ -1,8 +1,6 @@
 package com.example.admin.fashion;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,16 +48,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setView();
-    }
-
-    private void setView(){
-        //設定から値を取得
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        String arrivalStr = pref.getString(SettingPrefActivityMain.PREF_TIME_SETTING,"10");
-        final int arrival = Integer.parseInt(arrivalStr);     //学校に何分前に到着するか デフォルト値10
-        final String commuteStr = pref.getString(SettingPrefActivityMain.PREF_TIME_SETTING_TO_SHINJYUKU,"5");
-        final int commute = Integer.parseInt(commuteStr);     //新宿までの所要時間　デフォルト値5
 
         mTitle = (TextView) findViewById(R.id.title);
         mDateLabel0 = (TextView) findViewById(R.id.dateLabel0);
@@ -67,11 +55,6 @@ public class MainActivity extends AppCompatActivity {
         mImage0 = (NetworkImageView) findViewById(R.id.image0);
         mMinCelsius0 = (TextView) findViewById(R.id.minCelsius0);
         mMaxCelsius0 = (TextView) findViewById(R.id.maxCelsius0);
-
-
-        final SharedPreferences infoPref = getSharedPreferences("info",MODE_PRIVATE);
-
-
 
         mImageLoader = MySingleton.getInstance(this).getImageLoader();
 
@@ -86,19 +69,14 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            //お天気情報の保存
-                            SharedPreferences.Editor e = infoPref.edit();
-
                             mTitle.setText(response.getString("title"));
 //                            13mDescription.setText(response.getJSONObject("description").getString("text"));
                             mDateLabel0.setText(response.getJSONArray("forecasts").getJSONObject(0).getString("dateLabel"));
-                            String telopStr = response.getJSONArray("forecasts").getJSONObject(0).getString("telop");
-                            mTelop0.setText(telopStr);
-                            e.putString("telopInfo",telopStr);
+                            mTelop0.setText(response.getJSONArray("forecasts").getJSONObject(0).getString("telop"));
                             String url0 = response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("image").getString("url");
                             mImage0.setImageUrl(url0, mImageLoader);
 
-                            int maxCelToday = 20;
+
                             if (!Objects.equals(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getString("min"), "null")) {
 //                                Log.d("main",response.getJSONArray("forecasts").getJSONObject(0).toString());
                                 mMinCelsius0.setText(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getJSONObject("min").getString("celsius") + "℃");
@@ -107,14 +85,10 @@ public class MainActivity extends AppCompatActivity {
                             }
                             if (!Objects.equals(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getString("max"), "null")) {
 //                                Log.d("main",response.getJSONArray("forecasts").getJSONObject(0).toString());
-                                String celStr = response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getJSONObject("max").getString("celsius");
-                                mMaxCelsius0.setText(celStr + "℃ /");
-                                maxCelToday = Integer.parseInt(celStr);
+                                mMaxCelsius0.setText(response.getJSONArray("forecasts").getJSONObject(0).getJSONObject("temperature").getJSONObject("max").getString("celsius") + "℃ /");
                             } else {
                                 mMaxCelsius0.setText("-- /");
                             }
-                            e.putInt("infoCel",maxCelToday);
-                            e.commit();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -129,9 +103,6 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
-
-
-
 
         //乗換案内
         tt = new Traintime();
@@ -152,15 +123,15 @@ public class MainActivity extends AppCompatActivity {
                 String item = (String) spinner.getSelectedItem();
 
                 if (item.equals("1限")) {
-                    textView.setText(tt.text(1,arrival,commute));
+                    textView.setText(tt.text(1));
                 } else if (item.equals("2限")) {
-                    textView.setText(tt.text(2,arrival,commute));
+                    textView.setText(tt.text(2));
                 } else if (item.equals("3限")) {
-                    textView.setText(tt.text(3,arrival,commute));
+                    textView.setText(tt.text(3));
                 }else if (item.equals("4限")) {
-                    textView.setText(tt.text(4,arrival,commute));
+                    textView.setText(tt.text(4));
                 }else if (item.equals("5限")){
-                    textView.setText(tt.text(5,arrival,commute));
+                    textView.setText(tt.text(5));
                 }else{
                     textView.setText("出発時刻");
                 }
@@ -177,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         drawer_button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-//                finish();
+                finish();
                 Intent intent = new Intent(getApplication(),ShowFashion.class);
                 startActivity(intent);
             }
@@ -187,17 +158,12 @@ public class MainActivity extends AppCompatActivity {
         drawer_past_fashion.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-//                finish();
-                Intent intent = new Intent(getApplication(),FashionCalender.class);
+                finish();
+                Intent intent = new Intent(getApplication(),PastFashion.class);
                 startActivity(intent);
             }
         });
-    }
 
-    @Override
-    public void onResume(){
-        super.onResume();
-        setView();
     }
 
     @Override

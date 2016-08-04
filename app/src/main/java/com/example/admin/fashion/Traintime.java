@@ -5,10 +5,18 @@ import java.util.TreeSet;
 /**
  * Created by admin on 2016/08/03.
  */
-public class Traintime  {
+public class Traintime {
 
     //http://www.jreast-timetable.jp/1608/timetable/tt0866/0866060.html
     //中央線快速時刻表（新宿から八王子方面）
+    //新宿→東小金井駅の所要時間
+    int traintime = 21;
+    //東小金井駅→学校までの所要時間
+    int walktime = 15;
+    //何分前に学校に着くか
+    int waittime = 15;
+
+    int toSinjuku = 40;
 
     /*1限の電車時間候補
     int one[] = {24,26,28,32,34,36,38,40,42,44};
@@ -21,7 +29,7 @@ public class Traintime  {
 
     }
 
-    public String text(int input,int waittime,int toSinjuku){
+    public String text(int input){
         //inputは○限目をとってくる
         switch (input){
             case 1:
@@ -33,9 +41,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 15){
                     //8:38
@@ -45,9 +53,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 20){
                     //8:34
@@ -57,9 +65,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 25){
                     //8:28
@@ -69,9 +77,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 30){
                     //8:38
@@ -81,9 +89,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else{
                     return "error";
@@ -97,9 +105,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 15){
                     //10:16
@@ -109,9 +117,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 20){
                     //10:12
@@ -121,9 +129,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 25){
                     //10:7
@@ -133,9 +141,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 30){
                     //10:1
@@ -145,9 +153,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else{
                     return "error";
@@ -161,9 +169,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 15){
                     //12:39
@@ -173,9 +181,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 20){
                     //12:31
@@ -185,9 +193,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 25){
                     //12:24
@@ -197,9 +205,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 30){
                     //12:24
@@ -209,9 +217,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else{
                     return "error";
@@ -225,9 +233,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 15){
                     //14:17
@@ -237,9 +245,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 20){
                     //14:12
@@ -249,9 +257,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 25){
                     //14:9
@@ -261,9 +269,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 30){
                     //14:2
@@ -273,9 +281,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else{
                     return "error";
@@ -289,9 +297,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 15){
                     //15:54
@@ -301,9 +309,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 20){
                     //15:54
@@ -313,9 +321,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 25){
                     //15:47
@@ -325,9 +333,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else if(waittime == 30){
                     //15:39
@@ -337,9 +345,9 @@ public class Traintime  {
                     if(sub<0){
                         int min2 = sub + 60;
                         int hour2 = hour-1;
-                        return Integer.toString(hour2)+":"+String.format("%02d",min2);
+                        return Integer.toString(hour2)+":"+Integer.toString(min2);
                     }else{
-                        return Integer.toString(hour)+":"+String.format("%02d",sub);
+                        return Integer.toString(hour)+":"+Integer.toString(sub);
                     }
                 }else{
                     return "error";
