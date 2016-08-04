@@ -7,6 +7,10 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
+    <!-- カメラの使用を許可 -->
+    <user-permission android:name="android.permission.CAMERA"></user-permission>
+    <user-feature android:name="android.hardware.camera2"></user-feature>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
