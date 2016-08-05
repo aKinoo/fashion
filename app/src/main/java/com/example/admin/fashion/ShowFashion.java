@@ -272,18 +272,18 @@ public class ShowFashion extends AppCompatActivity {
         drawer_past_fashion.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-//                finish();
+                finish();
                 Intent intent = new Intent(getApplication(),FashionCalender.class);
                 startActivity(intent);
             }
         });
     }
 
-    @Override
-    public void onPause(){
-        super.onPause();
-        finish();
-    }
+//    @Override
+//    public void onPause(){
+//        super.onPause();
+//        finish();
+//    }
 
 
     //設定メニュー

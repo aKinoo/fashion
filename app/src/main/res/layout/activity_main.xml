@@ -76,7 +76,8 @@
                             <NumberPicker
                                 android:id="@+id/numberPicker0"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:solidColor="@color/HoseiOrange" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -88,7 +89,8 @@
                             <NumberPicker
                                 android:id="@+id/numberPicker1"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:solidColor="@color/HoseiOrange" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -99,7 +101,8 @@
                             <NumberPicker
                                 android:id="@+id/numberPicker2"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:solidColor="@color/HoseiOrange" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -109,7 +112,8 @@
                             <NumberPicker
                                 android:id="@+id/numberPicker3"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:solidColor="@color/HoseiOrange" />
                         </LinearLayout>
                     </LinearLayout>
                     <!--下半分-->

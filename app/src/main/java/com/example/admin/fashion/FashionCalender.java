@@ -39,9 +39,9 @@ public class FashionCalender extends AppCompatActivity {
     };
 
     String[] stackURL = {
-            "http://10.110.130.123/img/IMG_20160804_194152.jpg",
-            "http://10.110.130.123/img/IMG_20160804_194130.jpg",
-            "http://10.110.130.123/img/IMG_20160804_194219.jpg"
+            "http://192.168.151.197/img/IMG_20160804_194152.jpg",
+            "http://192.168.151.197/img/IMG_20160804_194130.jpg",
+            "http://192.168.151.197/img/IMG_20160804_194219.jpg"
     };
 
 

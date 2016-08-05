@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -86,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
     private String spinnerItems[] = {"1限", "2限", "3限", "4限", "5限"};
     private Traintime tt;
     private TextView textView;
+    private NumberPicker numPicker0,numPicker1,numPicker2,numPicker3;
 
     private static final String TAG = "MainActivity";
 
@@ -453,6 +455,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        numPicker0 = (NumberPicker)findViewById(R.id.numberPicker0);
+        numPicker1 = (NumberPicker)findViewById(R.id.numberPicker1);
+        numPicker2 = (NumberPicker)findViewById(R.id.numberPicker2);
+        numPicker3 = (NumberPicker)findViewById(R.id.numberPicker3);
+
+        numPicker0.setMaxValue(12);
+        numPicker0.setMinValue(1);
+
+        numPicker1.setMaxValue(31);
+        numPicker1.setMinValue(1);
+
+        numPicker2.setMaxValue(24);
+        numPicker2.setMinValue(0);
+
+        numPicker3.setMaxValue(59);
+        numPicker3.setMinValue(0);
 
         //スワイプメニューからコーデ画面へ遷移
         Button drawer_button1 = (Button) findViewById(R.id.drawer_button1);
