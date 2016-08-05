@@ -14,10 +14,20 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.google.api.client.http.HttpResponse;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -60,6 +70,7 @@ public class SimpleCameraActivity extends AppCompatActivity{
                         misTake = true;
                         //画像取得
                         mCam.takePicture(null,null,mPicJpgListener);
+
                     }
                 }
                 return true;
@@ -82,19 +93,17 @@ public class SimpleCameraActivity extends AppCompatActivity{
             if(data == null){
                 return;
             }
-
+//            PostMessageTask post = new PostMessageTask();
+//            post.execute(data);
             String saveDir = Environment.getExternalStorageDirectory().getPath() + "/test";
-
             //SDカードフォルダを取得
             File file = new File(saveDir);
-
             //フォルダ作成
             if(!file.exists()){
                 if(!file.mkdir()){
                     Log.e("Debug","Make Dir Error");
                 }
             }
-
             //画像保存パス
             Calendar cal = Calendar.getInstance();
             Date today = cal.getTime();

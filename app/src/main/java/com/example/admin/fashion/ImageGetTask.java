@@ -2,6 +2,7 @@ package com.example.admin.fashion;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.AsyncTask;
 import android.widget.ImageView;
 
@@ -24,7 +25,14 @@ class ImageGetTask extends AsyncTask<String,Void,Bitmap> {
             InputStream imageIs;
             imageIs = imageUrl.openStream();
             image = BitmapFactory.decodeStream(imageIs);
-            return image;
+            Bitmap originalBitmap = image;
+            //元画像
+            Bitmap rotateBitmap = originalBitmap.copy(Bitmap.Config.ARGB_8888, true);
+            Matrix matrix = new Matrix();
+            matrix.postRotate(90.0f);
+            //Bitmap回転させる
+            Bitmap flippedBmp = Bitmap.createBitmap(rotateBitmap, 0, 0, rotateBitmap.getWidth(), rotateBitmap.getHeight(), matrix, false);
+            return flippedBmp;
         } catch (MalformedURLException e) {
             return null;
         } catch (IOException e) {

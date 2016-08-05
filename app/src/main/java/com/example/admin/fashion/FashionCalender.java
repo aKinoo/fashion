@@ -38,11 +38,13 @@ public class FashionCalender extends AppCompatActivity {
             R.drawable.skirt
     };
 
-    String[] stackURL = {
-            "http://10.110.130.123/img/IMG_20160804_194152.jpg",
-            "http://10.110.130.123/img/IMG_20160804_194130.jpg",
-            "http://10.110.130.123/img/IMG_20160804_194219.jpg"
-    };
+//    String[] stackURL = {
+//            "http://10.110.130.123/img/IMG_20160804_194152.jpg",
+//            "http://10.110.130.123/img/IMG_20160804_194130.jpg",
+//            "http://10.110.130.123/img/IMG_20160804_194219.jpg"
+//    };
+
+    String[] stackURL = {"http://192.168.0.41:8080/test/testImage.jpg"};
 
 
 
@@ -85,39 +87,9 @@ public class FashionCalender extends AppCompatActivity {
             public ImageView instantiateItem(ViewGroup container, int position) {
                 ImageView imageView = new ImageView(FashionCalender.this);
                 imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-//
-////                imageView.setImageDrawable(getDrawable(drawables[position]));
-////                container.addView(imageView, new ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT));
-////                return imageView;
-//
-//                 Log.d("url","before get url");
-//                URL imageUrl = new URL("http://10.110.130.123/img/hert.jpg");
-//                    HttpURLConnection connection = (HttpURLConnection) imageUrl.openConnection();
-//                    connection.setDoInput(true);
-//                    connection.connect();
-//                    InputStream imageIs = connection.getInputStream();
-////                InputStream imageIs = imageUrl.openStream();
-//                    Log.d("url","agter get url");
-//                Bitmap bmp = BitmapFactory.decodeStream(imageIs);
-//
-////                        return image;
-////                        ArrayAdapter<Image> arrayAdapter = new ArrayAdapter<>(
-//////                                getActivity(), android.R.layout.fashioncal, list
-////                                getActivity(), android.R.layout.list
-////                        );
-////                        // ListView にアダプタをセット
-////                        ListView listView = (ListView)getActivity().findViewById(R.id.listView);
-////                        listView.setAdapter(arrayAdapter);
-////                        }catch (MalformedURLException e){
-////                        return null;
-//                // ListView 用のアダプタを作成
-//
-//
-////                 取得した画像をImageViewに設定します。
-//                imageView.setImageBitmap(bmp);
                 ImageGetTask task = new ImageGetTask(imageView);
 //                task.execute("http://10.110.130.123/img/hert.jpg");
-                task.execute(stackURL[position]);
+                task.execute(stackURL[0]);
                 container.addView(imageView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 return imageView;
             }
